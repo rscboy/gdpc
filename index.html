@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GDPC · OH-10 Candidate Questionnaire</title>
+<link rel="icon" type="image/png" href="https://i.postimg.cc/ZKt7TFnm/Untitled-design.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;700&family=Inter:wght@400;600;700&family=DM+Mono:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:        #000000;
+    --paper:      #ffffff;
+    --olive:      #517a4e; /* Extracted from the logo's leaves */
+    --olive-dk:   #3a5938;
+    --red-no:     #d92d2d;
+    --grey-light: #f0f0f0;
+    --grey-nr:    #888888;
+    --rule:       #000000;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* TYPOGRAPHY */
+  h1, h2, h3, h4, .oswald {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+  }
+
+  .mono {
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--paper);
+    color: var(--ink);
+    border-bottom: 4px solid var(--ink);
+    position: relative;
+  }
+
+  .hero-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .logo-wrap { flex-shrink: 0; }
+  .logo-wrap img {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    /* Optional: subtle shadow to lift the logo off the page */
+    filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.1));
+  }
+
+  .hero-text { flex: 1; }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--olive);
+    margin-bottom: 12px;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+    margin-bottom: 16px;
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #444;
+    line-height: 1.5;
+    max-width: 500px;
+  }
+
+  /* INTRO BAND */
+  .intro-band {
+    background: var(--olive);
+    color: var(--paper);
+    border-bottom: 4px solid var(--ink);
+  }
+
+  .intro-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .intro-inner p { font-size: 1.05rem; font-weight: 400; line-height: 1.7; }
+  .intro-inner p + p { margin-top: 16px; }
+
+  .intro-stat {
+    background: var(--paper);
+    color: var(--ink);
+    border: 3px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--ink);
+    padding: 16px 24px;
+  }
+
+  .intro-stat .stat-num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .intro-stat .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--olive);
+    margin-bottom: 20px;
+  }
+
+  .intro-stat hr { border: none; border-top: 2px solid var(--ink); margin: 16px 0; }
+
+  /* MAIN */
+  .main { max-width: 960px; margin: 0 auto; padding: 64px 32px 100px; }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .tab-btn {
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    color: var(--ink);
+    transition: all 0.15s ease;
+  }
+
+  .tab-btn.active { 
+    background: var(--ink); 
+    color: var(--paper);
+    box-shadow: 2px 2px 0 var(--olive);
+    transform: translate(2px, 2px);
+  }
+
+  .tab-btn:hover:not(.active) { 
+    background: var(--grey-light); 
+  }
+
+  /* QUESTIONS VIEW */
+  .q-list { display: flex; flex-direction: column; gap: 24px; }
+
+  .q-item {
+    border: 3px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--ink);
+    background: var(--paper);
+  }
+
+  .q-header {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 24px;
+    text-align: left;
+    transition: background 0.15s;
+  }
+
+  .q-header:hover { background: var(--grey-light); }
+
+  .q-num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--paper);
+    background: var(--ink);
+    padding: 4px 10px;
+    flex-shrink: 0;
+  }
+
+  .q-text {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    flex: 1;
+    line-height: 1.4;
+    margin-top: 2px;
+  }
+
+  .q-chevron {
+    flex-shrink: 0;
+    margin-top: 4px;
+    font-weight: 700;
+    transition: transform 0.2s;
+    font-size: 1.2rem;
+  }
+
+  .q-item.open .q-chevron { transform: rotate(180deg); }
+
+  .q-body {
+    display: none;
+    padding: 0 24px 24px;
+    border-top: 3px solid var(--ink);
+    background: #fafafa;
+  }
+
+  .q-item.open .q-body { display: block; }
+
+  .response-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 24px;
+  }
+
+  .response-card {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--ink);
+    padding: 20px;
+  }
+
+  .rc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .rc-cand-info { display: flex; align-items: center; gap: 12px; }
+  .rc-avatar { 
+    width: 36px; height: 36px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 2px solid var(--ink);
+  }
+
+  .rc-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .rc-party {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border: 2px solid var(--ink);
+  }
+
+  .party-D { background: #1a3a6b; color: white; }
+  .party-R { background: var(--red-no); color: white; }
+
+  .rc-response { display: flex; gap: 12px; align-items: flex-start; }
+
+  .badge {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border: 2px solid var(--ink);
+  }
+
+  .badge-yes { background: var(--olive); color: white; }
+  .badge-no  { background: var(--red-no); color: white; }
+  .badge-nr  { background: var(--grey-light); color: var(--grey-nr); }
+  .badge-aw  { background: var(--paper); color: var(--ink); }
+  .badge-txt { background: var(--ink); color: white; }
+
+  .rc-text { font-size: 0.95rem; color: var(--ink); line-height: 1.6; }
+
+  /* CANDIDATES VIEW */
+  .cand-layout { display: grid; grid-template-columns: 260px 1fr; gap: 40px; align-items: start; }
+
+  .cand-sidebar {
+    position: sticky;
+    top: 24px;
+    border: 3px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--ink);
+    background: var(--paper);
+  }
+
+  .cand-sidebar-label {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 16px 20px;
+    border-bottom: 3px solid var(--ink);
+  }
+
+  .cand-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    border-bottom: 2px solid var(--ink);
+    cursor: pointer;
+    padding: 16px 20px;
+    text-align: left;
+    transition: background 0.15s;
+  }
+
+  .cand-btn:last-child { border-bottom: none; }
+  .cand-btn:hover { background: var(--grey-light); }
+
+  .cand-btn.active {
+    background: var(--olive);
+    color: var(--paper);
+  }
+
+  .cand-btn-content { display: flex; align-items: center; gap: 16px; }
+  .cand-avatar { 
+    width: 44px; height: 44px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 2px solid var(--ink); 
+    background: var(--paper);
+    flex-shrink: 0; 
+  }
+
+  .cand-btn-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  .cand-btn:not(.active) .cand-btn-name { color: var(--ink); }
+  .cand-btn.active .cand-btn-name { color: var(--paper); }
+
+  .cand-btn-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .cand-btn:not(.active) .cand-btn-meta { color: var(--grey-nr); }
+  .cand-btn.active .cand-btn-meta { color: rgba(255,255,255,0.8); }
+
+  .cand-profile {
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+
+  .cand-profile-header { padding: 32px; border-bottom: 3px solid var(--ink); }
+  .cand-profile-header.D { background: #1a3a6b; color: white; }
+  .cand-profile-header.R { background: var(--red-no); color: white; }
+
+  .cph-inner { display: flex; align-items: center; gap: 24px; }
+  .cph-avatar { 
+    width: 96px; height: 96px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 4px solid var(--paper); 
+    box-shadow: 4px 4px 0 var(--ink); 
+    background: var(--paper); 
+    flex-shrink: 0; 
+  }
+
+  .cph-name {
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .cph-meta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+
+  .cph-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 6px 12px;
+    border: 2px solid var(--paper);
+  }
+
+  .cph-website { margin-top: 16px; }
+  .cph-website a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    text-decoration: none;
+    background: var(--paper);
+    padding: 8px 16px;
+    border: 2px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--ink);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .cph-website a:hover { 
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 var(--ink);
+  }
+  .cph-website svg { width: 14px; height: 14px; }
+
+  .cand-responses { padding: 32px; }
+
+  .resp-item {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 20px;
+    padding: 24px 0;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .resp-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .resp-item:first-child { padding-top: 0; }
+
+  .resp-timeline { display: flex; flex-direction: column; align-items: center; padding-top: 4px; }
+
+  .resp-dot {
+    width: 14px;
+    height: 14px;
+    background: var(--ink);
+    flex-shrink: 0;
+  }
+
+  .resp-line { flex: 1; width: 2px; background: var(--ink); margin-top: 8px; }
+  .resp-item:last-child .resp-line { display: none; }
+
+  .resp-q {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    color: var(--olive);
+    margin-bottom: 8px;
+  }
+
+  .resp-question { font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 16px; line-height: 1.5; }
+
+  .resp-answer {
+    background: var(--grey-light);
+    border: 2px solid var(--ink);
+    padding: 16px 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .resp-answer .badge { margin-top: 2px; }
+  .resp-answer-text { font-size: 0.95rem; color: var(--ink); line-height: 1.6; }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    padding: 16px 24px;
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    align-items: center;
+  }
+
+  .legend-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-right: 8px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--ink);
+  }
+
+  /* FOOTER */
+  .footer { background: var(--ink); color: var(--paper); padding: 64px 32px; border-top: 4px solid var(--ink); }
+
+  .footer-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .footer-logo { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+  .footer-logo img { width: 56px; height: 56px; object-fit: contain; filter: brightness(0) invert(1); }
+
+  .footer-org {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.4rem;
+    line-height: 1.2;
+    color: var(--paper);
+  }
+
+  .footer p { font-size: 0.95rem; line-height: 1.6; color: #ccc; }
+
+  .footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--olive-lt);
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    margin-top: 16px;
+    transition: color 0.15s;
+  }
+
+  .footer-link:hover { color: white; }
+
+  .footer-disc {
+    font-size: 0.85rem;
+    color: var(--grey-nr);
+    padding-top: 32px;
+    margin-top: 32px;
+    border-top: 2px solid #333;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero-inner { flex-direction: column; text-align: center; gap: 24px; padding: 32px 20px; }
+    .hero-sub { margin: 0 auto; }
+    .intro-inner { grid-template-columns: 1fr; gap: 24px; padding: 32px 20px; }
+    .main { padding: 32px 20px 80px; }
+    .cand-layout { grid-template-columns: 1fr; gap: 32px; }
+    .cand-sidebar { position: static; }
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="logo-wrap">
+      <img src="https://i.postimg.cc/gJhV5Qvs/Untitled-design(1).png" alt="Greater Dayton Peace Coalition Logo" onerror="this.onerror=null; this.src='https://via.placeholder.com/200x200.png?text=GDPC';" />
+    </div>
+    <div class="hero-text">
+      <div class="hero-eyebrow">Ohio's 10th Congressional District / 2028 Primary</div>
+      <h1 class="hero-title">CANDIDATE QUESTIONNAIRE</h1>
+      <p class="hero-sub">Where do the candidates for OH-10 stand on peace, military spending, and human rights? We asked. Here are the answers.</p>
+    </div>
+  </div>
+</header>
+
+<!-- INTRO BAND -->
+<section class="intro-band">
+  <div class="intro-inner">
+    <div>
+      <p>The Greater Dayton Peace Coalition is committed to maintaining a public presence in solidarity with the Palestinian people and advocating for peace for all. We sent a policy questionnaire to every candidate running for Ohio's 10th Congressional seat.</p>
+      <p>Their unedited responses, and documented non-responses, are published below. We believe voters deserve to know exactly where their representatives stand.</p>
+    </div>
+    <div class="intro-stat">
+      <div class="stat-num">8</div>
+      <div class="stat-label">Questions Asked</div>
+      <hr />
+      <div class="stat-num">7</div>
+      <div class="stat-label">Candidates Contacted</div>
+      <hr />
+      <div class="stat-num" style="color:var(--olive)">1</div>
+      <div class="stat-label">Responded in Full</div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main class="main">
+
+  <div class="legend">
+    <span class="legend-label">Key:</span>
+    <span class="legend-item"><span class="badge badge-yes">Y</span> Answered Yes</span>
+    <span class="legend-item"><span class="badge badge-no">N</span> Answered No</span>
+    <span class="legend-item"><span class="badge badge-txt">"</span> Custom Answer</span>
+    <span class="legend-item"><span class="badge badge-nr">X</span> Did Not Respond</span>
+    <span class="legend-item"><span class="badge badge-aw">?</span> Awaiting Response</span>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab-btn active" id="tab-c" role="tab" aria-selected="true" onclick="switchTab('candidates')">View by Candidate</button>
+    <button class="tab-btn" id="tab-q" role="tab" aria-selected="false" onclick="switchTab('questions')">Compare by Question</button>
+  </div>
+
+  <div id="view-candidates">
+    <div class="cand-layout">
+      <div class="cand-sidebar">
+        <div class="cand-sidebar-label">Select Candidate</div>
+        <div id="candSidebar"></div>
+      </div>
+      <div id="candProfile"></div>
+    </div>
+  </div>
+
+  <div id="view-questions" style="display:none">
+    <div class="q-list" id="qList"></div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">
+        <img src="https://i.postimg.cc/gJhV5Qvs/Untitled-design(1).png" alt="GDPC Icon" onerror="this.style.display='none'" />
+        <div class="footer-org">GREATER DAYTON<br/>PEACE COALITION</div>
+      </div>
+      <p>A diverse group of activists promoting peace and a more equitable future for all. We collaborate with other groups and welcome all who share our vision.</p>
+      <a class="footer-link" href="https://www.facebook.com/groups/769733220551061" target="_blank" rel="noreferrer">JOIN US ON FACEBOOK</a>
+    </div>
+    <div>
+      <p style="font-family:'Oswald', sans-serif; font-size:1.1rem; margin-bottom:12px; color:var(--paper); text-transform:uppercase;">Weekly protests. Open membership. Grassroots action.</p>
+      <p style="color:#aaa;">Thousands have seen our weekly protests.<br/>Hundreds have shown their support.<br/>Join us.</p>
+    </div>
+  </div>
+  <p class="footer-disc">This questionnaire was distributed by the GDPC. All responses are unedited and provided directly by the campaigns or their representatives. Non-response is documented as stated.</p>
+</footer>
+
+<script>
+const questions = [
+  { id:'q1', text:"Do you believe Israel should be held to the same standards as other countries regarding nuclear weapons?" },
+  { id:'q2', text:"Do you consider Palestinians to be living under a system of apartheid?" },
+  { id:'q3', text:"Do you consider the situation in Gaza to be a genocide?" },
+  { id:'q4', text:"Will you vote to provide continued financial and military support to Israel considering their actions over the last few years?" },
+  { id:'q5', text:"Will you accept campaign contributions from AIPAC or related entities?" },
+  { id:'q6', text:"Do you support the embargo on Cuba?" },
+  { id:'q7', text:"Do you believe money currently spent on the U.S. military and military aid abroad could be better spent improving the lives of citizens in the 10th congressional district?" },
+  { id:'q8', text:"Do you believe the 10th congressional district would benefit from diversifying employment opportunities to be less reliant on military-adjacent industries?" }
+];
+
+const candidates = [
+  {
+    id:'turner', name:'Mike Turner', party:'R', status:'Incumbent',
+    image:'https://upload.wikimedia.org/wikipedia/commons/3/3a/Mike_Turner%2C_official_photo%2C_116th_Congress.jpg',
+    website:'https://www.miketurner.com/',
+    responses:{
+      q1:"Did not respond to questionnaire.", q2:"Did not respond to questionnaire.",
+      q3:"Did not respond to questionnaire.", q4:"Did not respond to questionnaire.",
+      q5:"Did not respond to questionnaire.", q6:"Did not respond to questionnaire.",
+      q7:"Did not respond to questionnaire.", q8:"Did not respond to questionnaire."
+    }
+  },
+  {
+    id:'esrati', name:'David Esrati', party:'D', status:'Challenger',
+    image:'https://electesrati.com/wp-content/uploads/2026/01/David-Esrati-london-2025-scaled.jpg',
+    website:'https://electesrati.com/',
+    responses:{
+      q1:"I believe in total nuclear disarmament worldwide. Nuclear weapons do not make us safer. Nukes only do one thing, make human failure final.",
+      q2:"I believe Palestinians in the occupied territories face severe inequality and restrictions that deserve serious concern. I would distinguish that from Arab citizens of Israel, who do vote and have representation.",
+      q3:"No. Israel had a right to defend itself after the October 7 attack, but I believe its response went way too far and caused unacceptable civilian suffering and destruction.",
+      q4:"I would rather invest in health care, housing, infrastructure, and opportunity here than keep writing checks for more destruction abroad.",
+      q5:"No. I do not take PAC money.",
+      q6:"No. That policy has failed for far as long as I've been alive and should end.",
+      q7:"Absolutely. We have spent too much on war and not enough on people and infrastructure.",
+      q8:"Yes. We should not depend so heavily on industries tied to war when we could be building lasting prosperity in sectors that improve daily life."
+    }
+  },
+  { id:'knickerbocker', name:'Kristina Knickerbocker', party:'D', status:'Challenger',
+    image:'https://electesrati.com/wp-content/uploads/2026/01/Kristina-Knickerbocker-smarll.jpg',
+    website:'https://kristinaknickerbocker.com',
+    responses:{ q1:"Awaiting response.", q2:"Awaiting response.", q3:"Awaiting response.", q4:"Awaiting response.", q5:"Awaiting response.", q6:"Awaiting response.", q7:"Awaiting response.", q8:"Awaiting response." }
+  },
+  { id:'foggie', name:'Manuel Foggie', party:'D', status:'Challenger',
+    image:'https://electesrati.com/wp-content/uploads/2026/01/manuel-Foggie-sm.avif',
+    website:'https://www.foggieforcongress.com',
+    responses:{ q1:"Awaiting response.", q2:"Awaiting response.", q3:"Awaiting response.", q4:"Awaiting response.", q5:"Awaiting response.", q6:"Awaiting response.", q7:"Awaiting response.", q8:"Awaiting response." }
+  },
+  { id:'pombo', name:'Tony Pombo', party:'D', status:'Challenger',
+    image:'https://electesrati.com/wp-content/uploads/2024/03/Tony-Pombo.jpg',
+    website:'https://VotePombo.org',
+    responses:{ q1:"Awaiting response.", q2:"Awaiting response.", q3:"Awaiting response.", q4:"Awaiting response.", q5:"Awaiting response.", q6:"Awaiting response.", q7:"Awaiting response.", q8:"Awaiting response." }
+  },
+  { id:'beckett', name:'Janice C. Beckett', party:'D', status:'Challenger',
+    image:'https://electesrati.com/wp-content/uploads/2026/02/Janice-C.-Beckett.jpg',
+    website:'https://janicebeckettforcongress.com/',
+    responses:{ q1:"Awaiting response.", q2:"Awaiting response.", q3:"Awaiting response.", q4:"Awaiting response.", q5:"Awaiting response.", q6:"Awaiting response.", q7:"Awaiting response.", q8:"Awaiting response." }
+  },
+  { id:'kinner', name:'Jan Kinner', party:'D', status:'Challenger',
+    image:'https://electesrati.com/wp-content/uploads/2026/03/Jan-Kineer.jpeg',
+    website:'https://jankinner.com',
+    responses:{ q1:"Awaiting response.", q2:"Awaiting response.", q3:"Awaiting response.", q4:"Awaiting response.", q5:"Awaiting response.", q6:"Awaiting response.", q7:"Awaiting response.", q8:"Awaiting response." }
+  }
+];
+
+function getBadge(text) {
+  const l = text.toLowerCase();
+  if (l.startsWith('yes') || l.startsWith('absolutely')) return '<span class="badge badge-yes">Y</span>';
+  if (l.startsWith('no'))  return '<span class="badge badge-no">N</span>';
+  if (l.includes('did not respond')) return '<span class="badge badge-nr">X</span>';
+  if (l.includes('awaiting response')) return '<span class="badge badge-aw">?</span>';
+  return '<span class="badge badge-txt">"</span>';
+}
+
+function buildQuestions() {
+  document.getElementById('qList').innerHTML = questions.map((q, i) => `
+    <div class="q-item" id="qi-${q.id}">
+      <button class="q-header" onclick="toggleQ('${q.id}')" aria-expanded="false">
+        <span class="q-num">Q${i+1}</span>
+        <span class="q-text">${q.text}</span>
+        <span class="q-chevron">&#9662;</span>
+      </button>
+      <div class="q-body">
+        <div class="response-grid">
+          ${candidates.map(c => `
+            <div class="response-card">
+              <div class="rc-header">
+                <div class="rc-cand-info">
+                  <img src="${c.image}" alt="${c.name}" class="rc-avatar" onerror="this.style.opacity=0" />
+                  <span class="rc-name">${c.name}</span>
+                </div>
+                <span class="rc-party party-${c.party}">${c.party === 'D' ? 'Dem' : 'Rep'}</span>
+              </div>
+              <div class="rc-response">
+                ${getBadge(c.responses[q.id])}
+                <span class="rc-text">${c.responses[q.id]}</span>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleQ(id) {
+  const el = document.getElementById('qi-' + id);
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.q-item.open').forEach(x => {
+    x.classList.remove('open');
+    x.querySelector('.q-header').setAttribute('aria-expanded', 'false');
+  });
+  if (!isOpen) {
+    el.classList.add('open');
+    el.querySelector('.q-header').setAttribute('aria-expanded', 'true');
+  }
+}
+
+let activeCandId = 'turner';
+
+function buildCandidates() {
+  document.getElementById('candSidebar').innerHTML = candidates.map(c => `
+    <button class="cand-btn ${c.id === activeCandId ? 'active' : ''}" id="cb-${c.id}" onclick="selectCand('${c.id}')">
+      <div class="cand-btn-content">
+        <img src="${c.image}" alt="${c.name}" class="cand-avatar" onerror="this.style.opacity=0" />
+        <div>
+          <div class="cand-btn-name">${c.name}</div>
+          <div class="cand-btn-meta">${c.party === 'D' ? 'Democrat' : 'Republican'} / ${c.status}</div>
+        </div>
+      </div>
+    </button>
+  `).join('');
+  renderProfile(activeCandId);
+}
+
+function selectCand(id) {
+  activeCandId = id;
+  document.querySelectorAll('.cand-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('cb-' + id).classList.add('active');
+  renderProfile(id);
+}
+
+function renderProfile(id) {
+  const c = candidates.find(x => x.id === id);
+  document.getElementById('candProfile').innerHTML = `
+    <div class="cand-profile">
+      <div class="cand-profile-header ${c.party}">
+        <div class="cph-inner">
+          <img src="${c.image}" alt="${c.name}" class="cph-avatar" onerror="this.style.opacity=0" />
+          <div>
+            <div class="cph-name">${c.name}</div>
+            <div class="cph-meta">
+              <span class="cph-badge">${c.party === 'D' ? 'Democrat' : 'Republican'}</span>
+              <span class="mono" style="font-size:0.8rem; font-weight:700; color:rgba(255,255,255,0.9); text-transform:uppercase;">${c.status} / OH-10</span>
+            </div>
+            ${c.website ? `
+            <div class="cph-website">
+              <a href="${c.website}" target="_blank" rel="noreferrer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                CAMPAIGN WEBSITE
+              </a>
+            </div>` : ''}
+          </div>
+        </div>
+      </div>
+      <div class="cand-responses">
+        ${questions.map((q, i) => `
+          <div class="resp-item">
+            <div class="resp-timeline">
+              <div class="resp-dot"></div>
+              <div class="resp-line"></div>
+            </div>
+            <div>
+              <div class="resp-q">QUESTION ${i+1}</div>
+              <div class="resp-question">${q.text}</div>
+              <div class="resp-answer">
+                ${getBadge(c.responses[q.id])}
+                <span class="resp-answer-text">${c.responses[q.id]}</span>
+              </div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function switchTab(tab) {
+  const qv = document.getElementById('view-questions');
+  const cv = document.getElementById('view-candidates');
+  const tq = document.getElementById('tab-q');
+  const tc = document.getElementById('tab-c');
+  if (tab === 'questions') {
+    qv.style.display = ''; cv.style.display = 'none';
+    tq.classList.add('active'); tc.classList.remove('active');
+    tq.setAttribute('aria-selected','true'); tc.setAttribute('aria-selected','false');
+  } else {
+    qv.style.display = 'none'; cv.style.display = '';
+    tc.classList.add('active'); tq.classList.remove('active');
+    tc.setAttribute('aria-selected','true'); tq.setAttribute('aria-selected','false');
+    buildCandidates();
+  }
+}
+
+buildQuestions();
+buildCandidates();
+toggleQ('q1');
+</script>
+</body>
+</html>
