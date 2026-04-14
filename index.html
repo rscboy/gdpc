@@ -52,12 +52,13 @@
   }
 
   .hero-inner {
-    max-width: 960px;
+    max-width: 1040px;
     margin: 0 auto;
-    padding: 32px;
+    padding: 40px 32px;
     display: flex;
     align-items: center;
     gap: 32px;
+    flex-wrap: wrap;
   }
 
   .logo-wrap { flex-shrink: 0; }
@@ -97,54 +98,48 @@
     max-width: 500px;
   }
 
-  /* INTRO BAND */
-  .intro-band {
+  /* STATS BAND */
+  .stats-band {
     background: var(--olive);
-    color: var(--paper);
     border-bottom: 4px solid var(--ink);
   }
 
-  .intro-inner {
+  .stats-inner {
     max-width: 960px;
     margin: 0 auto;
-    padding: 32px;
     display: grid;
-    grid-template-columns: 3fr 2fr;
-    gap: 32px;
-    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
   }
 
-  .intro-inner p { font-size: 1.05rem; font-weight: 400; line-height: 1.7; }
-  .intro-inner p + p { margin-top: 16px; }
-
-  .intro-stat {
-    background: var(--paper);
-    color: var(--ink);
-    border: 3px solid var(--ink);
-    box-shadow: 6px 6px 0 var(--ink);
-    padding: 16px 24px;
+  .stat-item {
+    padding: 32px 24px;
+    text-align: center;
+    border-right: 4px solid var(--ink);
+    color: var(--paper);
   }
 
-  .intro-stat .stat-num {
+  .stat-item:last-child {
+    border-right: none;
+  }
+
+  .stat-item .stat-num {
     font-family: 'Oswald', sans-serif;
-    font-size: 2.5rem;
+    font-size: 4rem;
     font-weight: 700;
-    color: var(--ink);
+    color: var(--paper);
     line-height: 1;
     margin-bottom: 4px;
+    text-shadow: 3px 3px 0 var(--ink);
   }
 
-  .intro-stat .stat-label {
+  .stat-item .stat-label {
     font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--olive);
-    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.9);
   }
-
-  .intro-stat hr { border: none; border-top: 2px solid var(--ink); margin: 16px 0; }
 
   /* MAIN */
   .main { max-width: 960px; margin: 0 auto; padding: 64px 32px 100px; }
@@ -580,11 +575,54 @@
   @media (max-width: 768px) {
     .hero-inner { flex-direction: column; text-align: center; gap: 24px; padding: 32px 20px; }
     .hero-sub { margin: 0 auto; }
-    .intro-inner { grid-template-columns: 1fr; gap: 24px; padding: 32px 20px; }
+    
+    .stats-inner { grid-template-columns: 1fr; }
+    .stat-item { border-right: none; border-bottom: 4px solid var(--ink); padding: 24px 20px; }
+    .stat-item:last-child { border-bottom: none; }
+    
     .main { padding: 32px 20px 80px; }
-    .cand-layout { grid-template-columns: 1fr; gap: 32px; }
-    .cand-sidebar { position: static; }
-    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+    
+    .tabs { flex-direction: column; gap: 12px; }
+    .tab-btn { width: 100%; padding: 16px; }
+
+    .cand-layout { grid-template-columns: 1fr; gap: 24px; }
+    
+    .cand-sidebar { 
+      position: sticky; 
+      top: 0; 
+      z-index: 100;
+      margin: 0 -20px; 
+      border-left: none;
+      border-right: none;
+    }
+    .cand-sidebar-label { padding: 12px 20px; font-size: 1rem; }
+    
+    #candSidebar { 
+      display: flex; 
+      overflow-x: auto; 
+      -webkit-overflow-scrolling: touch; 
+      background: var(--paper);
+    }
+    
+    .cand-btn { 
+      flex: 0 0 auto; 
+      width: 140px; 
+      border-bottom: none; 
+      border-right: 2px solid var(--ink); 
+      padding: 16px 12px; 
+      justify-content: flex-start;
+    }
+    
+    .cand-btn-content { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+    .cand-btn-name { font-size: 0.95rem; line-height: 1.2; }
+    .cand-btn-meta { font-size: 0.65rem; margin-top: 0; }
+    
+    .cph-inner { flex-direction: column; text-align: center; gap: 16px; }
+    .cph-meta { justify-content: center; }
+    .cph-website { margin-top: 20px; }
+    
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+    .footer-logo { justify-content: center; }
   }
 </style>
 </head>
@@ -604,21 +642,19 @@
   </div>
 </header>
 
-<!-- INTRO BAND -->
-<section class="intro-band">
-  <div class="intro-inner">
-    <div>
-      <p>The Greater Dayton Peace Coalition is committed to maintaining a public presence in solidarity with the Palestinian people and advocating for peace for all. We sent a policy questionnaire to every candidate running for Ohio's 10th Congressional seat.</p>
-      <p>Their unedited responses, and documented non-responses, are published below. We believe voters deserve to know exactly where their representatives stand.</p>
-    </div>
-    <div class="intro-stat">
+<!-- STATS BAND -->
+<section class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-item">
       <div class="stat-num">8</div>
       <div class="stat-label">Questions Asked</div>
-      <hr />
+    </div>
+    <div class="stat-item">
       <div class="stat-num">7</div>
       <div class="stat-label">Candidates Contacted</div>
-      <hr />
-      <div class="stat-num" style="color:var(--olive)">1</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" style="color: #ffd700;">1</div>
       <div class="stat-label">Responded in Full</div>
     </div>
   </div>
