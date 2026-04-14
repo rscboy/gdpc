@@ -43,21 +43,129 @@
     font-family: 'DM Mono', monospace;
   }
 
+  /* SPLASH SCREEN */
+  body.splash-active { overflow: hidden; height: 100vh; }
+
+  #splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--olive);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    transition: transform 0.6s cubic-bezier(0.8, 0, 0.2, 1), opacity 0.6s ease;
+    overflow-y: auto;
+  }
+
+  #splash-screen.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .splash-content {
+    max-width: 800px;
+    background: var(--paper);
+    border: 3px solid var(--ink); /* Standardized to 3px */
+    box-shadow: 12px 12px 0 var(--ink);
+    padding: 56px 48px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin: auto;
+  }
+
+  .splash-logo img {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+    filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.1));
+  }
+
+  .splash-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--olive);
+    margin-bottom: -16px;
+  }
+
+  .splash-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .splash-text {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #222;
+    line-height: 1.6;
+    text-align: left;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+    background: var(--grey-light);
+    padding: 32px;
+  }
+
+  .splash-btn {
+    background: var(--ink);
+    color: var(--paper);
+    border: 3px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--olive);
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.25rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 16px 48px;
+    transition: all 0.15s ease;
+    margin-top: 12px;
+  }
+  
+  .splash-btn:hover {
+    background: var(--olive);
+    color: var(--paper);
+    box-shadow: 2px 2px 0 var(--ink);
+    transform: translate(2px, 2px);
+  }
+
+  @media (max-width: 768px) {
+    .splash-content { padding: 32px 20px; box-shadow: 6px 6px 0 var(--ink); }
+    .splash-eyebrow { font-size: 0.75rem; margin-bottom: -8px; }
+    .splash-text { font-size: 1.05rem; padding: 24px 20px; }
+    .splash-logo img { width: 120px; height: 120px; }
+    .splash-btn { width: 100%; padding: 16px; font-size: 1.1rem; }
+  }
+
   /* HERO */
   .hero {
     background: var(--paper);
     color: var(--ink);
-    border-bottom: 4px solid var(--ink);
+    border-bottom: 3px solid var(--ink); /* Standardized to 3px */
     position: relative;
   }
 
   .hero-inner {
-    max-width: 1040px;
+    max-width: 960px; /* Standardized to 960 grid */
     margin: 0 auto;
-    padding: 40px 32px;
+    padding: 28px 32px; /* Reduced vertical padding */
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 24px; /* Reduced gap to group logo and text */
     flex-wrap: wrap;
   }
 
@@ -66,11 +174,15 @@
     width: 140px;
     height: 140px;
     object-fit: contain;
-    /* Optional: subtle shadow to lift the logo off the page */
     filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.1));
   }
 
-  .hero-text { flex: 1; }
+  .hero-text { 
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
   .hero-eyebrow {
     font-family: 'DM Mono', monospace;
@@ -79,7 +191,7 @@
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--olive);
-    margin-bottom: 12px;
+    margin-bottom: 8px; /* Strict 8px spacing */
   }
 
   .hero-title {
@@ -87,7 +199,7 @@
     font-weight: 700;
     line-height: 1.05;
     letter-spacing: 0.01em;
-    margin-bottom: 16px;
+    margin-bottom: 8px; /* Subtitle pulled tightly to headline */
   }
 
   .hero-sub {
@@ -96,25 +208,31 @@
     color: #444;
     line-height: 1.5;
     max-width: 500px;
+    margin-top: 0;
   }
 
   /* STATS BAND */
   .stats-band {
     background: var(--olive);
-    border-bottom: 4px solid var(--ink);
+    border-bottom: 3px solid var(--ink); /* Standardized to 3px */
   }
 
   .stats-inner {
-    max-width: 960px;
+    max-width: 960px; /* Matched perfectly to hero grid */
     margin: 0 auto;
+    padding: 0 32px; /* Matched left/right flush alignment */
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* Enforces 3 perfectly equal columns */
   }
 
   .stat-item {
-    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically centered content */
+    align-items: center;
+    padding: 48px 24px; /* Increased internal breathing room */
     text-align: center;
-    border-right: 4px solid var(--ink);
+    border-right: 2px solid rgba(0, 0, 0, 0.25); /* Softened vertical divider */
     color: var(--paper);
   }
 
@@ -124,11 +242,11 @@
 
   .stat-item .stat-num {
     font-family: 'Oswald', sans-serif;
-    font-size: 4rem;
+    font-size: 3.5rem; /* Reduced by ~12.5% */
     font-weight: 700;
     color: var(--paper);
     line-height: 1;
-    margin-bottom: 4px;
+    margin-bottom: 12px; /* Increased spacing to separate from label */
     text-shadow: 3px 3px 0 var(--ink);
   }
 
@@ -139,6 +257,7 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.9);
+    line-height: 1.2;
   }
 
   /* MAIN */
@@ -521,7 +640,7 @@
   }
 
   /* FOOTER */
-  .footer { background: var(--ink); color: var(--paper); padding: 64px 32px; border-top: 4px solid var(--ink); }
+  .footer { background: var(--ink); color: var(--paper); padding: 64px 32px; border-top: 3px solid var(--ink); } /* Standardized to 3px */
 
   .footer-inner {
     max-width: 960px;
@@ -576,8 +695,8 @@
     .hero-inner { flex-direction: column; text-align: center; gap: 24px; padding: 32px 20px; }
     .hero-sub { margin: 0 auto; }
     
-    .stats-inner { grid-template-columns: 1fr; }
-    .stat-item { border-right: none; border-bottom: 4px solid var(--ink); padding: 24px 20px; }
+    .stats-inner { grid-template-columns: 1fr; padding: 0 20px; } /* Maintained padding structure */
+    .stat-item { border-right: none; border-bottom: 2px solid rgba(0,0,0,0.25); padding: 32px 20px; }
     .stat-item:last-child { border-bottom: none; }
     
     .main { padding: 32px 20px 80px; }
@@ -626,7 +745,23 @@
   }
 </style>
 </head>
-<body>
+<body class="splash-active">
+
+<!-- SPLASH SCREEN -->
+<div id="splash-screen">
+  <div class="splash-content">
+    <div class="splash-logo">
+      <img src="https://i.postimg.cc/gJhV5Qvs/Untitled-design(1).png" alt="Greater Dayton Peace Coalition Logo" onerror="this.onerror=null; this.src='https://via.placeholder.com/200x200.png?text=GDPC';" />
+    </div>
+    <div class="splash-eyebrow">Ohio's 10th Congressional District</div>
+    <h1 class="splash-title">Candidate Questionnaire</h1>
+    <div class="splash-text">
+      <p>The Greater Dayton Peace Coalition is committed to maintaining a public presence in solidarity with the Palestinian people and advocating for peace for all. We sent a policy questionnaire to every candidate running for Ohio's 10th Congressional seat.</p>
+      <p style="margin-top: 16px;">Their unedited responses, and documented non-responses, are published below. We believe voters deserve to know exactly where their representatives stand.</p>
+    </div>
+    <button class="splash-btn" onclick="enterSite()">View Candidate Responses &rarr;</button>
+  </div>
+</div>
 
 <!-- HERO -->
 <header class="hero">
@@ -713,6 +848,16 @@
 </footer>
 
 <script>
+function enterSite() {
+  const splash = document.getElementById('splash-screen');
+  splash.classList.add('hidden');
+  document.body.classList.remove('splash-active');
+  // Remove from DOM after animation completes
+  setTimeout(() => {
+    splash.style.display = 'none';
+  }, 600);
+}
+
 const questions = [
   { id:'q1', text:"Do you believe Israel should be held to the same standards as other countries regarding nuclear weapons?" },
   { id:'q2', text:"Do you consider Palestinians to be living under a system of apartheid?" },
