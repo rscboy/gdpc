@@ -789,7 +789,7 @@
       <div class="stat-label">Candidates Contacted</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num" style="color: #ffd700;">1</div>
+      <div class="stat-num" id="respondedFullStat" style="color: #ffd700;">0</div>
       <div class="stat-label">Responded in Full</div>
     </div>
   </div>
@@ -932,6 +932,19 @@ const candidates = [
   }
 ];
 
+
+function updateStats() {
+  const respondedInFull = candidates.filter(c =>
+    questions.every(q => {
+      const response = (c.responses[q.id] || '').toLowerCase();
+      return response && !response.includes('did not respond') && !response.includes('awaiting response');
+    })
+  ).length;
+
+  const statEl = document.getElementById('respondedFullStat');
+  if (statEl) statEl.textContent = String(respondedInFull);
+}
+
 function getBadge(text) {
   const l = text.toLowerCase();
   if (l.startsWith('yes') || l.startsWith('absolutely')) return '<span class="badge badge-yes">Y</span>';
@@ -1071,6 +1084,7 @@ function switchTab(tab) {
   }
 }
 
+updateStats();
 buildQuestions();
 buildCandidates();
 toggleQ('q1');
