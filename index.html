@@ -37,6 +37,7 @@
     font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
   /* TYPOGRAPHY */
@@ -274,6 +275,7 @@
     display: flex;
     gap: 16px;
     margin-bottom: 48px;
+    align-items: stretch;
   }
 
   .tab-btn {
@@ -288,6 +290,7 @@
     padding: 12px 28px;
     color: var(--ink);
     transition: all 0.15s ease;
+    min-height: 52px;
   }
 
   .tab-btn.active { 
@@ -321,6 +324,7 @@
     padding: 24px;
     text-align: left;
     transition: background 0.15s;
+    min-height: 88px;
   }
 
   .q-header:hover { background: var(--grey-light); }
@@ -467,6 +471,7 @@
     padding: 16px 20px;
     text-align: left;
     transition: background 0.15s;
+    min-height: 84px;
   }
 
   .cand-btn:last-child { border-bottom: none; }
@@ -698,56 +703,139 @@
 
   /* RESPONSIVE */
   @media (max-width: 768px) {
+    :root { --mobile-gutter: 16px; }
+
     .hero-inner { flex-direction: column; text-align: center; gap: 24px; padding: 32px 20px; }
+    .hero-title { font-size: clamp(1.9rem, 10vw, 2.4rem); }
     .hero-sub { margin: 0 auto; }
     
-    .stats-inner { grid-template-columns: 1fr; padding: 0 20px; } /* Maintained padding structure */
-    .stat-item { border-right: none; border-bottom: 2px solid rgba(0,0,0,0.25); padding: 32px 20px; }
+    .stats-inner { grid-template-columns: 1fr; padding: 0 var(--mobile-gutter); } /* Maintained padding structure */
+    .stat-item { border-right: none; border-bottom: 2px solid rgba(0,0,0,0.25); padding: 26px 18px; }
+    .stat-item .stat-num { font-size: 2.4rem; }
     .stat-item:last-child { border-bottom: none; }
     
-    .main { padding: 32px 20px 80px; }
+    .main { padding: 24px var(--mobile-gutter) 64px; }
+
+    .legend {
+      margin-bottom: 20px;
+      padding: 12px 14px;
+      gap: 10px 12px;
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+    .legend-label { width: 100%; margin-right: 0; font-size: 0.95rem; }
+    .legend-item { font-size: 0.78rem; gap: 6px; }
     
-    .tabs { flex-direction: column; gap: 12px; }
-    .tab-btn { width: 100%; padding: 16px; }
+    .tabs {
+      position: sticky;
+      top: 0;
+      z-index: 150;
+      background: var(--paper);
+      padding: 8px 0 12px;
+      margin-bottom: 22px;
+      gap: 10px;
+    }
+    .tab-btn {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 0.95rem;
+      box-shadow: 3px 3px 0 var(--ink);
+    }
 
     .cand-layout { grid-template-columns: 1fr; gap: 24px; }
     
     .cand-sidebar { 
       position: sticky; 
-      top: 0; 
+      top: 68px; 
       z-index: 100;
-      margin: 0 -20px; 
+      margin: 0 calc(-1 * var(--mobile-gutter));
       border-left: none;
       border-right: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     }
-    .cand-sidebar-label { padding: 12px 20px; font-size: 1rem; }
+    .cand-sidebar-label { padding: 10px var(--mobile-gutter); font-size: 0.9rem; }
     
     #candSidebar { 
       display: flex; 
       overflow-x: auto; 
       -webkit-overflow-scrolling: touch; 
       background: var(--paper);
+      scroll-snap-type: x proximity;
+      scrollbar-width: thin;
     }
     
     .cand-btn { 
       flex: 0 0 auto; 
-      width: 140px; 
+      width: 132px;
       border-bottom: none; 
       border-right: 2px solid var(--ink); 
-      padding: 16px 12px; 
+      padding: 12px 10px;
       justify-content: flex-start;
+      scroll-snap-align: start;
+      min-height: 68px;
     }
     
     .cand-btn-content { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+    .cand-avatar { width: 34px; height: 34px; }
     .cand-btn-name { font-size: 0.95rem; line-height: 1.2; }
-    .cand-btn-meta { font-size: 0.65rem; margin-top: 0; }
+    .cand-btn-meta { font-size: 0.58rem; margin-top: 0; line-height: 1.15; }
+
+    .cand-profile { box-shadow: 3px 3px 0 var(--ink); }
+    .cand-profile-header { padding: 18px 14px; }
+    .cph-avatar { width: 80px; height: 80px; }
+    .cph-name { font-size: 1.7rem; margin-bottom: 10px; }
+    .cph-badge { font-size: 0.68rem; }
+    .cand-responses { padding: 20px 14px; }
+    .resp-item { grid-template-columns: 22px 1fr; gap: 12px; padding: 18px 0; }
+    .resp-q { font-size: 0.9rem; margin-bottom: 6px; }
+    .resp-question { font-size: 0.95rem; margin-bottom: 12px; line-height: 1.4; }
+    .resp-answer { gap: 10px; padding: 10px 12px; }
+    .resp-answer-text { font-size: 0.89rem; line-height: 1.45; }
+
+    .q-list { gap: 14px; }
+    .q-item { box-shadow: 3px 3px 0 var(--ink); }
+    .q-header { padding: 14px; gap: 10px; min-height: 72px; }
+    .q-num { font-size: 0.95rem; padding: 3px 8px; }
+    .q-text { font-size: 0.95rem; margin-top: 0; line-height: 1.35; }
+    .q-chevron { font-size: 1rem; margin-top: 2px; }
+    .q-body { padding: 0 14px 14px; }
+    .response-grid { grid-template-columns: 1fr; gap: 12px; margin-top: 14px; }
+    .response-card { padding: 12px; box-shadow: 2px 2px 0 var(--ink); }
+    .rc-header { margin-bottom: 10px; padding-bottom: 8px; }
+    .rc-name { font-size: 1rem; }
+    .rc-text { font-size: 0.88rem; line-height: 1.45; }
+    .badge { width: 22px; height: 22px; font-size: 0.8rem; }
     
     .cph-inner { flex-direction: column; text-align: center; gap: 16px; }
     .cph-meta { justify-content: center; }
     .cph-website { margin-top: 20px; }
+    .cph-website a { font-size: 0.82rem; padding: 8px 12px; box-shadow: 2px 2px 0 var(--ink); }
     
-    .footer-inner { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+    .footer { padding: 40px 18px; }
+    .footer-inner { grid-template-columns: 1fr; gap: 26px; text-align: center; }
     .footer-logo { justify-content: center; }
+    .footer-org { font-size: 1.2rem; }
+    .footer-disc { margin-top: 20px; padding-top: 20px; font-size: 0.78rem; }
+  }
+
+  @media (max-width: 420px) {
+    .splash-content { padding: 24px 14px; }
+    .splash-text { font-size: 0.96rem; padding: 14px; }
+    .hero-inner { padding: 24px 14px; }
+    .logo-wrap img { width: 108px; height: 108px; }
+    .hero-eyebrow { font-size: 0.65rem; }
+    .hero-sub { font-size: 0.95rem; }
+    .stat-item .stat-label { font-size: 0.76rem; }
+    .cand-btn { width: 118px; }
+    .tab-btn { font-size: 0.9rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
   }
 </style>
 </head>
