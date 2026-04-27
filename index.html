@@ -427,6 +427,7 @@
 
   .party-D { background: #1a3a6b; color: white; }
   .party-R { background: var(--red-no); color: white; }
+  .party-L { background: #f2b600; color: #111; }
 
   .rc-response { display: flex; gap: 12px; align-items: flex-start; }
 
@@ -535,6 +536,7 @@
   .cand-profile-header { padding: 32px; border-bottom: 3px solid var(--ink); }
   .cand-profile-header.D { background: #1a3a6b; color: white; }
   .cand-profile-header.R { background: var(--red-no); color: white; }
+  .cand-profile-header.L { background: #f2b600; color: #111; }
 
   .cph-inner { display: flex; align-items: center; gap: 24px; }
   .cph-avatar { 
@@ -1132,6 +1134,14 @@ const candidates = [
       q7:"I do not support Trump’s proposed defense budget for Fiscal Year 2027 because such an increase is not needed or justified; it cuts funding to programs that matter to people; and does not mitigate our national debt problem. I support a strong, well-equipped military — but I do not support endless dollars (adding to the national debt) flowing into the military-industrial complex at a time when social safety nets are being cut (e.g., Medicaid, SNAP, ACA subsidies), when the Department of War has not been able to have a clean audit of its books in almost a decade, and when large military projects are always over cost and behind schedule. Many people in the District are hurting financially, living paycheck to paycheck. Why is it that Congress can always find funds (like an emergency appropriation to support military operations in Iran) to do things TO people, but never can find the funds FOR people?",
       q8:"Yes, but we must not forget the military industrial complex associated with Wright Patterson provides a lot of “spill-over” or “ripple-through” funds for many people in the District. The diversification challenge is an economic development one that must be led by the Wright Patt Regional Council of Government and other economic development organizations within the 10th Congressional District – it cannot be forced upon a community, town, city, or county (-ies)."
     }
+  },
+  { id:'mcmasters', name:'Tom McMasters', party:'L', status:'Challenger',
+    image:'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Thomas_McMasters_2026.jpg',
+    website:'https://ballotpedia.org/Thomas_McMasters_(Ohio_U.S._House)',
+    responses:{
+      q1:"Awaiting response.", q2:"Awaiting response.", q3:"Awaiting response.", q4:"Awaiting response.",
+      q5:"Awaiting response.", q6:"Awaiting response.", q7:"Awaiting response.", q8:"Awaiting response."
+    }
   }
 ];
 
@@ -1157,6 +1167,20 @@ function getBadge(text) {
   return '<span class="badge badge-txt">"</span>';
 }
 
+function getPartyShort(party) {
+  if (party === 'D') return 'Dem';
+  if (party === 'R') return 'Rep';
+  if (party === 'L') return 'Lib';
+  return party;
+}
+
+function getPartyFull(party) {
+  if (party === 'D') return 'Democrat';
+  if (party === 'R') return 'Republican';
+  if (party === 'L') return 'Libertarian';
+  return party;
+}
+
 function buildQuestions() {
   document.getElementById('qList').innerHTML = questions.map((q, i) => `
     <div class="q-item" id="qi-${q.id}">
@@ -1174,7 +1198,7 @@ function buildQuestions() {
                   <img src="${c.image}" alt="${c.name}" class="rc-avatar" onerror="this.style.opacity=0" />
                   <span class="rc-name">${c.name}</span>
                 </div>
-                <span class="rc-party party-${c.party}">${c.party === 'D' ? 'Dem' : 'Rep'}</span>
+                <span class="rc-party party-${c.party}">${getPartyShort(c.party)}</span>
               </div>
               <div class="rc-response">
                 ${getBadge(c.responses[q.id])}
@@ -1217,7 +1241,7 @@ function buildCandidates() {
             <img src="${c.image}" alt="${c.name}" class="cand-avatar" onerror="this.style.opacity=0" />
             <div>
               <div class="cand-btn-name">${c.name}</div>
-              <div class="cand-btn-meta">${c.party === 'D' ? 'Democrat' : 'Republican'} / ${c.status}</div>
+              <div class="cand-btn-meta">${getPartyFull(c.party)} / ${c.status}</div>
             </div>
           </div>
         </button>
@@ -1264,7 +1288,7 @@ function renderProfile(id) {
           <div>
             <div class="cph-name">${c.name}</div>
             <div class="cph-meta">
-              <span class="cph-badge">${c.party === 'D' ? 'Democrat' : 'Republican'}</span>
+              <span class="cph-badge">${getPartyFull(c.party)}</span>
               <span class="mono" style="font-size:0.8rem; font-weight:700; color:rgba(255,255,255,0.9); text-transform:uppercase;">${c.status} / OH-10</span>
             </div>
             ${c.website ? `
