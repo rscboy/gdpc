@@ -942,7 +942,7 @@
       <div class="stat-label">Questions Asked</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num">7</div>
+      <div class="stat-num" id="contactedStat">0</div>
       <div class="stat-label">Candidates Contacted</div>
     </div>
     <div class="stat-item">
@@ -1147,12 +1147,16 @@ const candidates = [
 
 
 function updateStats() {
+  const contacted = candidates.length;
   const respondedInFull = candidates.filter(c =>
     questions.every(q => {
       const response = (c.responses[q.id] || '').toLowerCase();
       return response && !response.includes('did not respond') && !response.includes('awaiting response');
     })
   ).length;
+
+  const contactedEl = document.getElementById('contactedStat');
+  if (contactedEl) contactedEl.textContent = String(contacted);
 
   const statEl = document.getElementById('respondedFullStat');
   if (statEl) statEl.textContent = String(respondedInFull);
