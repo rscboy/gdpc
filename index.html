@@ -275,6 +275,13 @@
   /* MAIN */
   .main { max-width: 960px; margin: 0 auto; padding: 64px 32px 100px; }
 
+  .card {
+    border: 3px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    background: var(--paper);
+    padding: 24px;
+  }
+
   /* TABS */
   .tabs {
     display: flex;
@@ -456,6 +463,8 @@
     background: var(--paper);
   }
 
+  .cand-select { display: none; }
+
   .cand-sidebar-label {
     background: var(--ink);
     color: var(--paper);
@@ -478,6 +487,8 @@
     transition: background 0.15s;
     min-height: 84px;
   }
+
+  .cand-btn-list { display: block; }
 
   .cand-btn:last-child { border-bottom: none; }
   .cand-btn:hover { background: var(--grey-light); }
@@ -624,6 +635,14 @@
   .resp-answer .badge { margin-top: 2px; }
   .resp-answer-text { font-size: 0.95rem; color: var(--ink); line-height: 1.6; }
 
+  .q-text,
+  .rc-text,
+  .resp-question,
+  .resp-answer-text,
+  .cph-website a {
+    overflow-wrap: anywhere;
+  }
+
   /* LEGEND */
   .legend {
     display: flex;
@@ -708,112 +727,150 @@
 
   /* RESPONSIVE */
   @media (max-width: 768px) {
-    :root { --mobile-gutter: 16px; }
+    :root { --mobile-gutter: 12px; }
 
-    .hero-inner { flex-direction: column; text-align: center; gap: 24px; padding: 32px 20px; }
-    .hero-title { font-size: clamp(1.9rem, 10vw, 2.4rem); }
+    body { font-size: 15px; line-height: 1.5; }
+
+    .hero-inner { flex-direction: column; text-align: center; gap: 16px; padding: 24px 16px; }
+    .logo-wrap img { width: 96px; height: 96px; }
+    .hero-title { font-size: clamp(1.75rem, 9vw, 2.25rem); }
     .hero-sub { margin: 0 auto; }
     
-    .stats-inner { grid-template-columns: 1fr; padding: 0 var(--mobile-gutter); } /* Maintained padding structure */
-    .stat-item { border-right: none; border-bottom: 2px solid rgba(0,0,0,0.25); padding: 26px 18px; }
-    .stat-item .stat-num { font-size: 2.4rem; }
-    .stat-item:last-child { border-bottom: none; }
+    .stats-inner { grid-template-columns: repeat(3, 1fr); padding: 0; }
+    .stat-item { border-right: 1px solid rgba(0,0,0,0.25); border-bottom: none; padding: 14px 6px; }
+    .stat-item .stat-num { font-size: 1.9rem; margin-bottom: 6px; text-shadow: 2px 2px 0 var(--ink); }
+    .stat-item .stat-label { font-size: 0.58rem; letter-spacing: 0.06em; }
+    .stat-item:last-child { border-right: none; }
     
-    .main { padding: 24px var(--mobile-gutter) 64px; }
+    .main { padding: 14px var(--mobile-gutter) 56px; }
+
+    .card {
+      padding: 14px 12px;
+      border-width: 2px;
+      box-shadow: none;
+      margin-bottom: 14px !important;
+    }
+    .card h3 { font-size: 1rem; line-height: 1.2; }
+    .card p, .card li { font-size: 0.92rem; line-height: 1.5; }
+    .card summary { min-height: 44px; display: flex; align-items: center; }
 
     .legend {
-      margin-bottom: 20px;
-      padding: 12px 14px;
+      margin-bottom: 14px;
+      padding: 12px;
       gap: 10px 12px;
-      box-shadow: 3px 3px 0 var(--ink);
+      border-width: 2px;
+      box-shadow: none;
     }
     .legend-label { width: 100%; margin-right: 0; font-size: 0.95rem; }
     .legend-item { font-size: 0.78rem; gap: 6px; }
     
     .tabs {
-      position: sticky;
-      top: 0;
+      position: static;
       z-index: 150;
       background: var(--paper);
-      padding: 8px 0 12px;
-      margin-bottom: 22px;
-      gap: 10px;
+      padding: 0;
+      margin: 0 0 16px;
+      gap: 0;
+      border-bottom: none;
+      box-shadow: none;
     }
     .tab-btn {
       width: 100%;
-      padding: 12px 14px;
-      font-size: 0.95rem;
-      box-shadow: 3px 3px 0 var(--ink);
+      padding: 10px 8px;
+      font-size: 0.84rem;
+      letter-spacing: 0.03em;
+      box-shadow: none;
+      min-height: 48px;
+      border-width: 2px;
+    }
+    .tab-btn + .tab-btn { border-left: none; }
+    .tab-btn.active {
+      box-shadow: inset 0 -4px 0 var(--olive);
+      transform: none;
     }
 
-    .cand-layout { grid-template-columns: 1fr; gap: 24px; }
+    .cand-layout { grid-template-columns: 1fr; gap: 14px; }
     
     .cand-sidebar { 
-      position: sticky; 
-      top: 68px; 
+      position: static; 
       z-index: 100;
-      margin: 0 calc(-1 * var(--mobile-gutter));
-      border-left: none;
-      border-right: none;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      margin: 0;
+      border-width: 2px;
+      box-shadow: none;
     }
-    .cand-sidebar-label { padding: 10px var(--mobile-gutter); font-size: 0.9rem; }
-    
-    #candSidebar { 
-      display: flex; 
-      overflow-x: auto; 
-      -webkit-overflow-scrolling: touch; 
+    .cand-sidebar-label { padding: 8px 12px; font-size: 0.82rem; border-bottom-width: 2px; }
+
+    .cand-select {
+      display: block;
+      width: calc(100% - 20px);
+      min-height: 46px;
+      margin: 10px;
+      padding: 0 38px 0 12px;
+      border: 2px solid var(--ink);
+      border-radius: 0;
       background: var(--paper);
-      scroll-snap-type: x proximity;
-      scrollbar-width: thin;
+      color: var(--ink);
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      text-transform: uppercase;
+      appearance: auto;
     }
     
-    .cand-btn { 
-      flex: 0 0 auto; 
-      width: 132px;
-      border-bottom: none; 
-      border-right: 2px solid var(--ink); 
-      padding: 12px 10px;
-      justify-content: flex-start;
-      scroll-snap-align: start;
-      min-height: 68px;
+    .cand-btn-list { 
+      display: none;
     }
-    
-    .cand-btn-content { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
-    .cand-avatar { width: 34px; height: 34px; }
-    .cand-btn-name { font-size: 0.95rem; line-height: 1.2; }
-    .cand-btn-meta { font-size: 0.58rem; margin-top: 0; line-height: 1.15; }
 
-    .cand-profile { box-shadow: 3px 3px 0 var(--ink); }
-    .cand-profile-header { padding: 18px 14px; }
-    .cph-avatar { width: 80px; height: 80px; }
-    .cph-name { font-size: 1.7rem; margin-bottom: 10px; }
+    .cand-profile { box-shadow: none; border-width: 2px; }
+    .cand-profile-header { padding: 14px 12px; border-bottom-width: 2px; }
+    .cph-avatar { width: 56px; height: 56px; border-width: 2px; box-shadow: 2px 2px 0 var(--ink); }
+    .cph-name { font-size: 1.45rem; margin-bottom: 8px; }
     .cph-badge { font-size: 0.68rem; }
-    .cand-responses { padding: 20px 14px; }
-    .resp-item { grid-template-columns: 22px 1fr; gap: 12px; padding: 18px 0; }
-    .resp-q { font-size: 0.9rem; margin-bottom: 6px; }
+    .cand-responses { padding: 12px; }
+    .resp-item {
+      display: block;
+      padding: 16px 0;
+    }
+    .resp-timeline { display: none; }
+    .resp-q {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 2px 8px;
+      background: var(--ink);
+      color: var(--paper);
+      font-size: 0.82rem;
+      margin-bottom: 8px;
+    }
     .resp-question { font-size: 0.95rem; margin-bottom: 12px; line-height: 1.4; }
-    .resp-answer { gap: 10px; padding: 10px 12px; }
-    .resp-answer-text { font-size: 0.89rem; line-height: 1.45; }
+    .resp-answer {
+      display: grid;
+      grid-template-columns: 24px minmax(0, 1fr);
+      gap: 10px;
+      padding: 10px;
+      border-width: 1px;
+    }
+    .resp-answer-text { font-size: 0.94rem; line-height: 1.55; }
 
-    .q-list { gap: 14px; }
-    .q-item { box-shadow: 3px 3px 0 var(--ink); }
-    .q-header { padding: 14px; gap: 10px; min-height: 72px; }
+    .q-list { gap: 12px; }
+    .q-item { box-shadow: none; border-width: 2px; }
+    .q-header { padding: 12px; gap: 10px; min-height: 64px; }
     .q-num { font-size: 0.95rem; padding: 3px 8px; }
     .q-text { font-size: 0.95rem; margin-top: 0; line-height: 1.35; }
     .q-chevron { font-size: 1rem; margin-top: 2px; }
-    .q-body { padding: 0 14px 14px; }
+    .q-body { padding: 0 12px 12px; border-top-width: 2px; }
     .response-grid { grid-template-columns: 1fr; gap: 12px; margin-top: 14px; }
-    .response-card { padding: 12px; box-shadow: 2px 2px 0 var(--ink); }
+    .response-card { padding: 12px; box-shadow: none; border-width: 1px; }
     .rc-header { margin-bottom: 10px; padding-bottom: 8px; }
+    .rc-cand-info { min-width: 0; }
     .rc-name { font-size: 1rem; }
+    .rc-party { font-size: 0.62rem; padding: 3px 6px; }
     .rc-text { font-size: 0.88rem; line-height: 1.45; }
     .badge { width: 22px; height: 22px; font-size: 0.8rem; }
     
-    .cph-inner { flex-direction: column; text-align: center; gap: 16px; }
-    .cph-meta { justify-content: center; }
-    .cph-website { margin-top: 20px; }
-    .cph-website a { font-size: 0.82rem; padding: 8px 12px; box-shadow: 2px 2px 0 var(--ink); }
+    .cph-inner { flex-direction: row; text-align: left; gap: 12px; align-items: center; }
+    .cph-meta { justify-content: flex-start; gap: 8px; }
+    .cph-website { margin-top: 12px; }
+    .cph-website a { font-size: 0.82rem; padding: 8px 12px; box-shadow: none; }
     
     .footer { padding: 40px 18px; }
     .footer-inner { grid-template-columns: 1fr; gap: 26px; text-align: center; }
@@ -826,12 +883,11 @@
     .splash-content { padding: 24px 14px; }
     .splash-text { font-size: 0.96rem; padding: 14px; }
     .hero-inner { padding: 24px 14px; }
-    .logo-wrap img { width: 108px; height: 108px; }
+    .logo-wrap img { width: 88px; height: 88px; }
     .hero-eyebrow { font-size: 0.65rem; }
     .hero-sub { font-size: 0.95rem; }
-    .stat-item .stat-label { font-size: 0.76rem; }
-    .cand-btn { width: 118px; }
-    .tab-btn { font-size: 0.9rem; }
+    .stat-item .stat-label { font-size: 0.56rem; }
+    .tab-btn { font-size: 0.8rem; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1148,25 +1204,54 @@ function toggleQ(id) {
 let activeCandId = 'turner';
 
 function buildCandidates() {
-  document.getElementById('candSidebar').innerHTML = candidates.map(c => `
-    <button class="cand-btn ${c.id === activeCandId ? 'active' : ''}" id="cb-${c.id}" onclick="selectCand('${c.id}')">
-      <div class="cand-btn-content">
-        <img src="${c.image}" alt="${c.name}" class="cand-avatar" onerror="this.style.opacity=0" />
-        <div>
-          <div class="cand-btn-name">${c.name}</div>
-          <div class="cand-btn-meta">${c.party === 'D' ? 'Democrat' : 'Republican'} / ${c.status}</div>
-        </div>
-      </div>
-    </button>
-  `).join('');
+  document.getElementById('candSidebar').innerHTML = `
+    <select class="cand-select" aria-label="Select candidate" onchange="selectCand(this.value)">
+      ${candidates.map(c => `
+        <option value="${c.id}" ${c.id === activeCandId ? 'selected' : ''}>${c.name} (${c.party})</option>
+      `).join('')}
+    </select>
+    <div class="cand-btn-list">
+      ${candidates.map(c => `
+        <button class="cand-btn ${c.id === activeCandId ? 'active' : ''}" id="cb-${c.id}" onclick="selectCand('${c.id}')">
+          <div class="cand-btn-content">
+            <img src="${c.image}" alt="${c.name}" class="cand-avatar" onerror="this.style.opacity=0" />
+            <div>
+              <div class="cand-btn-name">${c.name}</div>
+              <div class="cand-btn-meta">${c.party === 'D' ? 'Democrat' : 'Republican'} / ${c.status}</div>
+            </div>
+          </div>
+        </button>
+      `).join('')}
+    </div>
+  `;
   renderProfile(activeCandId);
+}
+
+function syncCandidateNav(id) {
+  document.querySelectorAll('.cand-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.getElementById('cb-' + id);
+  if (btn) {
+    btn.classList.add('active');
+    if (window.matchMedia('(max-width: 768px)').matches) {
+      btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  }
+
+  const select = document.querySelector('.cand-select');
+  if (select) select.value = id;
 }
 
 function selectCand(id) {
   activeCandId = id;
-  document.querySelectorAll('.cand-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('cb-' + id).classList.add('active');
+  syncCandidateNav(id);
   renderProfile(id);
+
+  if (window.matchMedia('(max-width: 768px)').matches) {
+    const profile = document.getElementById('candProfile');
+    const topOffset = 12;
+    const profileTop = profile.getBoundingClientRect().top + window.scrollY - topOffset;
+    window.scrollTo({ top: profileTop, behavior: 'smooth' });
+  }
 }
 
 function renderProfile(id) {
