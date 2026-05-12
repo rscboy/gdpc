@@ -519,6 +519,16 @@
     flex-shrink: 0; 
   }
 
+  .avatar-initials {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    color: var(--ink);
+    text-transform: uppercase;
+  }
+
   .cand-btn-name {
     font-family: 'Oswald', sans-serif;
     font-size: 1.1rem;
@@ -688,10 +698,8 @@
   }
 
 
-  /* SENATE SECTION */
-  .senate-section {
-    margin-bottom: 48px;
-  }
+  /* RACE TOGGLE */
+  .race-toggle-section { margin-bottom: 22px; }
 
   .section-heading {
     font-size: 1.8rem;
@@ -704,54 +712,49 @@
     margin-bottom: 22px;
   }
 
-  .senate-grid {
+  .race-toggle {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 
-  .senate-card {
+  .race-toggle-btn {
+    background: var(--paper);
     border: 3px solid var(--ink);
     box-shadow: 4px 4px 0 var(--ink);
-    background: var(--paper);
-    padding: 20px;
+    cursor: pointer;
+    padding: 18px 20px;
+    text-align: left;
+    color: var(--ink);
+    transition: all 0.15s ease;
   }
 
-  .senate-card-top {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 14px;
+  .race-toggle-btn:hover:not(.active) { background: var(--grey-light); }
+
+  .race-toggle-btn.active {
+    background: var(--olive);
+    color: var(--paper);
+    box-shadow: 2px 2px 0 var(--ink);
+    transform: translate(2px, 2px);
   }
 
-  .senate-initials {
-    width: 52px;
-    height: 52px;
-    border: 2px solid var(--ink);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .race-toggle-title {
+    display: block;
     font-family: 'Oswald', sans-serif;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     font-weight: 700;
-    background: var(--grey-light);
-  }
-
-  .senate-name {
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.35rem;
     line-height: 1.1;
     text-transform: uppercase;
   }
 
-  .senate-race {
+  .race-toggle-meta {
+    display: block;
     font-family: 'DM Mono', monospace;
     font-size: 0.72rem;
     font-weight: 700;
-    color: var(--grey-nr);
+    letter-spacing: 0.06em;
+    margin-top: 6px;
     text-transform: uppercase;
-    margin-top: 4px;
   }
 
   /* FOOTER */
@@ -952,13 +955,13 @@
     .cph-website { margin-top: 12px; }
     .cph-website a { font-size: 0.82rem; padding: 8px 12px; box-shadow: none; }
     
-    .senate-section { margin-bottom: 28px; }
+    .race-toggle-section { margin-bottom: 14px; }
     .section-heading { font-size: 1.25rem; }
     .section-copy { font-size: 0.92rem; margin-bottom: 14px; }
-    .senate-grid { grid-template-columns: 1fr; gap: 12px; }
-    .senate-card { padding: 14px 12px; border-width: 2px; box-shadow: none; }
-    .senate-initials { width: 44px; height: 44px; font-size: 1rem; }
-    .senate-name { font-size: 1.1rem; }
+    .race-toggle { grid-template-columns: 1fr; gap: 10px; }
+    .race-toggle-btn { padding: 12px; border-width: 2px; box-shadow: none; }
+    .race-toggle-title { font-size: 1.05rem; }
+    .race-toggle-meta { font-size: 0.64rem; }
 
     .footer { padding: 40px 18px; }
     .footer-inner { grid-template-columns: 1fr; gap: 26px; text-align: center; }
@@ -1024,12 +1027,12 @@
 <section class="stats-band">
   <div class="stats-inner">
     <div class="stat-item">
-      <div class="stat-num">8</div>
+      <div class="stat-num" id="questionsStat">0</div>
       <div class="stat-label">Questions Asked</div>
     </div>
     <div class="stat-item">
       <div class="stat-num" id="contactedStat">0</div>
-      <div class="stat-label">OH-10 Candidates Contacted</div>
+      <div class="stat-label" id="contactedLabel">House Candidates Contacted</div>
     </div>
     <div class="stat-item">
       <div class="stat-num" id="respondedFullStat" style="color: #ffd700;">0</div>
@@ -1080,10 +1083,19 @@
     </details>
   </section>
 
-  <section class="senate-section card">
-    <h2 class="section-heading">2026 U.S. Senate Candidates</h2>
-    <p class="section-copy">A separate 2026 general election Senate section is included here for statewide candidate reference.</p>
-    <div class="senate-grid" id="senateGrid"></div>
+  <section class="race-toggle-section card" aria-labelledby="raceHeading">
+    <h2 class="section-heading" id="raceHeading">2026 Federal Candidates</h2>
+    <p class="section-copy">Toggle between Ohio's 10th Congressional District House race and the statewide U.S. Senate race. Both races use the same candidate and question comparison views below.</p>
+    <div class="race-toggle" role="tablist" aria-label="Select candidate race">
+      <button class="race-toggle-btn active" id="race-house" role="tab" aria-selected="true" onclick="switchRace('house')">
+        <span class="race-toggle-title">House of Representatives</span>
+        <span class="race-toggle-meta">Ohio's 10th Congressional District</span>
+      </button>
+      <button class="race-toggle-btn" id="race-senate" role="tab" aria-selected="false" onclick="switchRace('senate')">
+        <span class="race-toggle-title">U.S. Senate</span>
+        <span class="race-toggle-meta">Statewide Ohio race</span>
+      </button>
+    </div>
   </section>
 
   <div class="legend">
@@ -1157,7 +1169,7 @@ const questions = [
   { id:'q8', text:"Do you believe the 10th congressional district would benefit from diversifying employment opportunities to be less reliant on military-adjacent industries?" }
 ];
 
-const candidates = [
+const houseCandidates = [
   {
     id:'turner', name:'Mike Turner', party:'R', status:'Republican Nominee', race:'OH-10',
     image:'https://upload.wikimedia.org/wikipedia/commons/3/3a/Mike_Turner%2C_official_photo%2C_116th_Congress.jpg',
@@ -1189,23 +1201,65 @@ const candidates = [
   }
 ];
 
+function awaitingResponses() {
+  return questions.reduce((acc, q) => {
+    acc[q.id] = 'Awaiting response.';
+    return acc;
+  }, {});
+}
+
 const senateCandidates = [
-  { id:'husted', name:'Jon Husted', party:'R', status:'Republican Nominee', race:'U.S. Senate' },
-  { id:'brown', name:'Sherrod Brown', party:'D', status:'Democratic Nominee', race:'U.S. Senate' },
-  { id:'levy', name:'Greg Levy', party:'I', status:'Independent Candidate', race:'U.S. Senate' }
+  {
+    id:'husted', name:'Jon Husted', party:'R', status:'Republican Nominee', race:'U.S. Senate',
+    image:'', website:'https://www.hustedforsenate.com/', responses: awaitingResponses()
+  },
+  {
+    id:'brown', name:'Sherrod Brown', party:'D', status:'Democratic Nominee', race:'U.S. Senate',
+    image:'', website:'https://www.sherrodbrown.com/', responses: awaitingResponses()
+  },
+  {
+    id:'levy', name:'Greg Levy', party:'I', status:'Independent Candidate', race:'U.S. Senate',
+    image:'', website:'', responses: awaitingResponses()
+  }
 ];
 
+const raceData = {
+  house: {
+    label: 'House Candidates Contacted',
+    candidates: houseCandidates,
+    defaultCandidateId: 'turner'
+  },
+  senate: {
+    label: 'Senate Candidates Contacted',
+    candidates: senateCandidates,
+    defaultCandidateId: 'husted'
+  }
+};
+
+let activeRace = 'house';
+
+function getActiveCandidates() {
+  return raceData[activeRace].candidates;
+}
+
 function updateStats() {
-  const contacted = candidates.length;
-  const respondedInFull = candidates.filter(c =>
+  const activeCandidates = getActiveCandidates();
+  const contacted = activeCandidates.length;
+  const respondedInFull = activeCandidates.filter(c =>
     questions.every(q => {
       const response = (c.responses[q.id] || '').toLowerCase();
       return response && !response.includes('did not respond') && !response.includes('awaiting response');
     })
   ).length;
 
+  const questionsEl = document.getElementById('questionsStat');
+  if (questionsEl) questionsEl.textContent = String(questions.length);
+
   const contactedEl = document.getElementById('contactedStat');
   if (contactedEl) contactedEl.textContent = String(contacted);
+
+  const contactedLabel = document.getElementById('contactedLabel');
+  if (contactedLabel) contactedLabel.textContent = raceData[activeRace].label;
 
   const statEl = document.getElementById('respondedFullStat');
   if (statEl) statEl.textContent = String(respondedInFull);
@@ -1246,25 +1300,15 @@ function getInitials(name) {
     .toUpperCase();
 }
 
-function buildSenateSection() {
-  const senateGrid = document.getElementById('senateGrid');
-  if (!senateGrid) return;
-  senateGrid.innerHTML = senateCandidates.map(c => `
-    <article class="senate-card">
-      <div class="senate-card-top">
-        <div class="senate-initials" aria-hidden="true">${getInitials(c.name)}</div>
-        <div>
-          <div class="senate-name">${c.name}</div>
-          <div class="senate-race">${c.race}</div>
-        </div>
-      </div>
-      <span class="rc-party party-${c.party}">${getPartyFull(c.party)}</span>
-      <p style="margin-top:12px; font-size:0.92rem; font-weight:600; color:#444;">${c.status}</p>
-    </article>
-  `).join('');
+function renderAvatar(candidate, className) {
+  if (candidate.image) {
+    return `<img src="${candidate.image}" alt="${candidate.name}" class="${className}" onerror="this.style.opacity=0" />`;
+  }
+  return `<span class="${className} avatar-initials" aria-label="${candidate.name}">${getInitials(candidate.name)}</span>`;
 }
 
 function buildQuestions() {
+  const activeCandidates = getActiveCandidates();
   document.getElementById('qList').innerHTML = questions.map((q, i) => `
     <div class="q-item" id="qi-${q.id}">
       <button class="q-header" onclick="toggleQ('${q.id}')" aria-expanded="false">
@@ -1274,11 +1318,11 @@ function buildQuestions() {
       </button>
       <div class="q-body">
         <div class="response-grid">
-          ${candidates.map(c => `
+          ${activeCandidates.map(c => `
             <div class="response-card">
               <div class="rc-header">
                 <div class="rc-cand-info">
-                  <img src="${c.image}" alt="${c.name}" class="rc-avatar" onerror="this.style.opacity=0" />
+                  ${renderAvatar(c, 'rc-avatar')}
                   <span class="rc-name">${c.name}</span>
                 </div>
                 <span class="rc-party party-${c.party}">${getPartyShort(c.party)}</span>
@@ -1311,17 +1355,18 @@ function toggleQ(id) {
 let activeCandId = 'turner';
 
 function buildCandidates() {
+  const activeCandidates = getActiveCandidates();
   document.getElementById('candSidebar').innerHTML = `
     <select class="cand-select" aria-label="Select candidate" onchange="selectCand(this.value)">
-      ${candidates.map(c => `
+      ${activeCandidates.map(c => `
         <option value="${c.id}" ${c.id === activeCandId ? 'selected' : ''}>${c.name} (${c.party})</option>
       `).join('')}
     </select>
     <div class="cand-btn-list">
-      ${candidates.map(c => `
+      ${activeCandidates.map(c => `
         <button class="cand-btn ${c.id === activeCandId ? 'active' : ''}" id="cb-${c.id}" onclick="selectCand('${c.id}')">
           <div class="cand-btn-content">
-            <img src="${c.image}" alt="${c.name}" class="cand-avatar" onerror="this.style.opacity=0" />
+            ${renderAvatar(c, 'cand-avatar')}
             <div>
               <div class="cand-btn-name">${c.name}</div>
               <div class="cand-btn-meta">${getPartyFull(c.party)} / ${c.status}</div>
@@ -1362,12 +1407,12 @@ function selectCand(id) {
 }
 
 function renderProfile(id) {
-  const c = candidates.find(x => x.id === id);
+  const c = getActiveCandidates().find(x => x.id === id);
   document.getElementById('candProfile').innerHTML = `
     <div class="cand-profile">
       <div class="cand-profile-header ${c.party}">
         <div class="cph-inner">
-          <img src="${c.image}" alt="${c.name}" class="cph-avatar" onerror="this.style.opacity=0" />
+          ${renderAvatar(c, 'cph-avatar')}
           <div>
             <div class="cph-name">${c.name}</div>
             <div class="cph-meta">
@@ -1406,6 +1451,24 @@ function renderProfile(id) {
   `;
 }
 
+
+function switchRace(race) {
+  if (!raceData[race] || activeRace === race) return;
+  activeRace = race;
+  activeCandId = raceData[race].defaultCandidateId;
+
+  document.querySelectorAll('.race-toggle-btn').forEach(btn => {
+    const isActive = btn.id === 'race-' + race;
+    btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-selected', String(isActive));
+  });
+
+  updateStats();
+  buildQuestions();
+  buildCandidates();
+  toggleQ('q1');
+}
+
 function switchTab(tab) {
   const qv = document.getElementById('view-questions');
   const cv = document.getElementById('view-candidates');
@@ -1424,7 +1487,6 @@ function switchTab(tab) {
 }
 
 updateStats();
-buildSenateSection();
 buildQuestions();
 buildCandidates();
 toggleQ('q1');
