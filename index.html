@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>GDPC · OH-10 Candidate Questionnaire</title>
+<title>GDPC · 2026 General Election Candidate Questionnaire</title>
 <link rel="icon" type="image/png" href="https://i.ibb.co/SDZ6vYrp/Untitled-design-1.png" />
 <meta property="og:image" content="https://i.ibb.co/VpmWy1Hn/Screenshot-2026-04-21-at-5-07-21-PM.png" />
 <meta property="og:image:secure_url" content="https://i.ibb.co/VpmWy1Hn/Screenshot-2026-04-21-at-5-07-21-PM.png" />
@@ -14,8 +14,8 @@
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:image:src" content="https://i.ibb.co/VpmWy1Hn/Screenshot-2026-04-21-at-5-07-21-PM.png" />
-<meta name="twitter:title" content="GDPC · OH-10 Candidate Questionnaire" />
-<meta name="twitter:description" content="Green-Democratic Party Coalition (OH-10) candidate questionnaire." />
+<meta name="twitter:title" content="GDPC · 2026 General Election Candidate Questionnaire" />
+<meta name="twitter:description" content="Greater Dayton Peace Coalition 2026 general election candidate questionnaire." />
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-R8Y7J0VV2T"></script>
 <script>
@@ -437,6 +437,7 @@
   .party-D { background: #1a3a6b; color: white; }
   .party-R { background: var(--red-no); color: white; }
   .party-L { background: #f2b600; color: #111; }
+  .party-I { background: #4b5563; color: white; }
 
   .rc-response { display: flex; gap: 12px; align-items: flex-start; }
 
@@ -546,6 +547,7 @@
   .cand-profile-header.D { background: #1a3a6b; color: white; }
   .cand-profile-header.R { background: var(--red-no); color: white; }
   .cand-profile-header.L { background: #f2b600; color: #111; }
+  .cand-profile-header.I { background: #4b5563; color: white; }
 
   .cph-inner { display: flex; align-items: center; gap: 24px; }
   .cph-avatar { 
@@ -683,6 +685,73 @@
     font-weight: 600;
     font-size: 0.9rem;
     color: var(--ink);
+  }
+
+
+  /* SENATE SECTION */
+  .senate-section {
+    margin-bottom: 48px;
+  }
+
+  .section-heading {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+  }
+
+  .section-copy {
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 22px;
+  }
+
+  .senate-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .senate-card {
+    border: 3px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    background: var(--paper);
+    padding: 20px;
+  }
+
+  .senate-card-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .senate-initials {
+    width: 52px;
+    height: 52px;
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    background: var(--grey-light);
+  }
+
+  .senate-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.35rem;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  .senate-race {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--grey-nr);
+    text-transform: uppercase;
+    margin-top: 4px;
   }
 
   /* FOOTER */
@@ -883,6 +952,14 @@
     .cph-website { margin-top: 12px; }
     .cph-website a { font-size: 0.82rem; padding: 8px 12px; box-shadow: none; }
     
+    .senate-section { margin-bottom: 28px; }
+    .section-heading { font-size: 1.25rem; }
+    .section-copy { font-size: 0.92rem; margin-bottom: 14px; }
+    .senate-grid { grid-template-columns: 1fr; gap: 12px; }
+    .senate-card { padding: 14px 12px; border-width: 2px; box-shadow: none; }
+    .senate-initials { width: 44px; height: 44px; font-size: 1rem; }
+    .senate-name { font-size: 1.1rem; }
+
     .footer { padding: 40px 18px; }
     .footer-inner { grid-template-columns: 1fr; gap: 26px; text-align: center; }
     .footer-logo { justify-content: center; }
@@ -922,7 +999,7 @@
     <div class="splash-eyebrow">Ohio's 10th Congressional District</div>
     <h1 class="splash-title">Candidate Questionnaire</h1>
     <div class="splash-text">
-      <p>The Greater Dayton Peace Coalition is committed to maintaining a public presence in solidarity with the Palestinian people and advocating for peace for all. We sent a policy questionnaire to every candidate running for Ohio's 10th Congressional seat.</p>
+      <p>The Greater Dayton Peace Coalition is committed to maintaining a public presence in solidarity with the Palestinian people and advocating for peace for all. We sent a policy questionnaire to candidates in the 2026 general election for Ohio's 10th Congressional seat.</p>
       <p style="margin-top: 16px;">Their unedited responses, and documented non-responses, are published below. We believe voters deserve to know exactly where their representatives stand.</p>
     </div>
     <button class="splash-btn" onclick="enterSite()">View Candidate Responses &rarr;</button>
@@ -936,9 +1013,9 @@
       <img src="https://i.ibb.co/SDZ6vYrp/Untitled-design-1.png" alt="Greater Dayton Peace Coalition Logo" onerror="this.onerror=null; this.src='https://via.placeholder.com/200x200.png?text=GDPC';" />
     </div>
     <div class="hero-text">
-      <div class="hero-eyebrow">Ohio's 10th Congressional District / 2026 Primary</div>
+      <div class="hero-eyebrow">Ohio's 10th Congressional District / 2026 General Election</div>
       <h1 class="hero-title">CANDIDATE QUESTIONNAIRE</h1>
-      <p class="hero-sub">Where do the candidates for OH-10 stand on peace, military spending, and human rights? We asked. Here are the answers.</p>
+      <p class="hero-sub">Where do the 2026 general election candidates stand on peace, military spending, and human rights? We asked. Here are the answers.</p>
     </div>
   </div>
 </header>
@@ -952,7 +1029,7 @@
     </div>
     <div class="stat-item">
       <div class="stat-num" id="contactedStat">0</div>
-      <div class="stat-label">Candidates Contacted</div>
+      <div class="stat-label">OH-10 Candidates Contacted</div>
     </div>
     <div class="stat-item">
       <div class="stat-num" id="respondedFullStat" style="color: #ffd700;">0</div>
@@ -970,7 +1047,7 @@
     <details>
       <summary style="cursor:pointer; font-weight:700; color:var(--gold);">View full letter text</summary>
       <div style="margin-top: 14px; line-height: 1.65;">
-        <p>The Greater Dayton Peace Coalition (GDPC) is a diverse, nonpartisan group of activists united by a commitment to peace and equity in the Greater Dayton area. You are a candidate seeking the Democratic nomination to oppose Mike Turner in the congressional race for Ohio’s 10th district. We ask that you share your positions on foreign relations, military spending, and the promotion of our region as a hub for military-related technology and manufacturing.</p>
+        <p>The Greater Dayton Peace Coalition (GDPC) is a diverse, nonpartisan group of activists united by a commitment to peace and equity in the Greater Dayton area. You are a candidate running in the 2026 general election for Ohio’s 10th congressional district. We ask that you share your positions on foreign relations, military spending, and the promotion of our region as a hub for military-related technology and manufacturing.</p>
         <p>Please answer the following questions honestly and in keeping with your own values. Some require only a yes or no; you are welcome to elaborate as needed.</p>
         <ol style="padding-left: 18px; margin: 10px 0 14px;">
           <li>Do you believe Israel should be held to the same standards as other countries regarding nuclear weapons?</li>
@@ -1001,6 +1078,12 @@
         Basel Yanes</p>
       </div>
     </details>
+  </section>
+
+  <section class="senate-section card">
+    <h2 class="section-heading">2026 U.S. Senate Candidates</h2>
+    <p class="section-copy">A separate 2026 general election Senate section is included here for statewide candidate reference.</p>
+    <div class="senate-grid" id="senateGrid"></div>
   </section>
 
   <div class="legend">
@@ -1076,7 +1159,7 @@ const questions = [
 
 const candidates = [
   {
-    id:'turner', name:'Mike Turner', party:'R', status:'Incumbent',
+    id:'turner', name:'Mike Turner', party:'R', status:'Republican Nominee', race:'OH-10',
     image:'https://upload.wikimedia.org/wikipedia/commons/3/3a/Mike_Turner%2C_official_photo%2C_116th_Congress.jpg',
     website:'https://www.miketurner.com/',
     responses:{
@@ -1087,64 +1170,16 @@ const candidates = [
     }
   },
   {
-    id:'esrati', name:'David Esrati', party:'D', status:'Challenger',
-    image:'https://electesrati.com/wp-content/uploads/2026/01/David-Esrati-london-2025-scaled.jpg',
-    website:'https://electesrati.com/',
-    responses:{
-      q1:"I believe in total nuclear disarmament worldwide. Nuclear weapons do not make us safer. Nukes only do one thing, make human failure final.",
-      q2:"I believe Palestinians in the occupied territories face severe inequality and restrictions that deserve serious concern. I would distinguish that from Arab citizens of Israel, who do vote and have representation.",
-      q3:"No. Israel had a right to defend itself after the October 7 attack, but I believe its response went way too far and caused unacceptable civilian suffering and destruction.",
-      q4:"I would rather invest in health care, housing, infrastructure, and opportunity here than keep writing checks for more destruction abroad.",
-      q5:"No. I do not take PAC money.",
-      q6:"No. That policy has failed for far as long as I've been alive and should end.",
-      q7:"Absolutely. We have spent too much on war and not enough on people and infrastructure.",
-      q8:"Yes. We should not depend so heavily on industries tied to war when we could be building lasting prosperity in sectors that improve daily life."
-    }
-  },
-  { id:'knickerbocker', name:'Kristina Knickerbocker', party:'D', status:'Challenger',
+    id:'knickerbocker', name:'Kristina Knickerbocker', party:'D', status:'Democratic Nominee', race:'OH-10',
     image:'https://electesrati.com/wp-content/uploads/2026/01/Kristina-Knickerbocker-smarll.jpg',
     website:'https://kristinaknickerbocker.com',
-    responses:{ q1:"Awaiting response.", q2:"Awaiting response.", q3:"Awaiting response.", q4:"Awaiting response.", q5:"Awaiting response.", q6:"Awaiting response.", q7:"Awaiting response.", q8:"Awaiting response." }
-  },
-  { id:'foggie', name:'Manuel Foggie', party:'D', status:'Challenger',
-    image:'https://electesrati.com/wp-content/uploads/2026/01/manuel-Foggie-sm.avif',
-    website:'https://www.foggieforcongress.com',
     responses:{
-      q1:"Yes. I believe all nations should be held to consistent international standards when it comes to nuclear weapons, including transparency and nonproliferation. Global security depends on fairness and accountability.",
-      q2:"I believe Palestinians are facing systemic inequality, restricted movement, and a lack of political and civil rights that must be addressed. While labels are often debated, the current conditions are unjust and demand serious international attention and action toward a two-state solution and equal human rights.",
-      q3:"The humanitarian crisis in Gaza is severe and unacceptable, with devastating loss of civilian life. We must immediately focus on ending violence, protecting civilians, and ensuring humanitarian aid reaches those in need. Accountability and adherence to international law are critical.",
-      q4:"I support a reassessment of U.S. aid to ensure it aligns with our values and international law. Any continued support should be conditioned on the protection of human rights and civilian lives. The United States must use its influence to promote peace and accountability.",
-      q5:"I am committed to running a campaign that prioritizes the voices of the people in Ohio's 10th District. I will carefully evaluate all contributions to ensure they align with my values of transparency, accountability, and putting constituents first.",
-      q6:"No. I believe the embargo has not achieved its intended goals and has instead harmed everyday Cuban people. I support a shift toward diplomacy, engagement, and policies that promote economic opportunity and human rights.",
-      q7:"Yes. While national defense is important, we must find a better balance. Investing in healthcare, education, infrastructure, and economic opportunity here at home, especially in communities across the 10th District, will strengthen our country from the ground up.",
-      q8:"Yes. Wright-Patterson Air Force Base is a critical economic engine, and we must continue to support the workers and families connected to it. At the same time, diversifying our economy into technology, clean energy, healthcare, and small business development will create long-term stability and opportunity for our region."
+      q1:"Awaiting response.", q2:"Awaiting response.", q3:"Awaiting response.", q4:"Awaiting response.",
+      q5:"Awaiting response.", q6:"Awaiting response.", q7:"Awaiting response.", q8:"Awaiting response."
     }
   },
-  { id:'pombo', name:'Tony Pombo', party:'D', status:'Challenger',
-    image:'https://electesrati.com/wp-content/uploads/2024/03/Tony-Pombo.jpg',
-    website:'https://VotePombo.org',
-    responses:{ q1:"Awaiting response.", q2:"Awaiting response.", q3:"Awaiting response.", q4:"Awaiting response.", q5:"Awaiting response.", q6:"Awaiting response.", q7:"Awaiting response.", q8:"Awaiting response." }
-  },
-  { id:'beckett', name:'Janice C. Beckett', party:'D', status:'Challenger',
-    image:'https://electesrati.com/wp-content/uploads/2026/02/Janice-C.-Beckett.jpg',
-    website:'https://janicebeckettforcongress.com/',
-    responses:{ q1:"Awaiting response.", q2:"Awaiting response.", q3:"Awaiting response.", q4:"Awaiting response.", q5:"Awaiting response.", q6:"Awaiting response.", q7:"Awaiting response.", q8:"Awaiting response." }
-  },
-  { id:'kinner', name:'Jan Kinner', party:'D', status:'Challenger',
-    image:'https://electesrati.com/wp-content/uploads/2026/03/Jan-Kineer.jpeg',
-    website:'https://jankinner.com',
-    responses:{
-      q1:"Probably, but we won’t because it wouldn’t make any difference. Iraq and Iran are both signatories of the Nuclear Non Proliferation Treaty and the International Atomic Energy Agency has made claims that those countries were enriching uranium with the intention of making nuclear bombs. Just because someone is a signatory to a treaty doesn’t mean they will follow it if it is in their national interest. India and Pakistan are not signatories to the Nuclear Non Proliferation Treaty and they are known to possess nuclear weapons so their status really isn’t much different than Israel’s. No one doubts Israel possesses nuclear weapons, though they will not admit it. No one doubts they have a uranium enrichment facility, though they do not admit it. The only thing they do not do is test nuclear weapons. Just as the US has a policy of mutually assured destruction the Israelis has a policy of nuclear ambiguity. Despite all the unrest in the Middle East in the past we still have not seen nuclear weapons used so holding Israel to the same standards, for all practical purposes, wouldn’t make a difference. The best solution is to rid the entire world of nuclear weapons – something that will never happen as countries/civilizations/cultures with people in power seeking glory continue to try and dominate other others.",
-      q2:"Yes. Israel claims the West Bank and Gaza are a temporary security arrangement but there is nothing temporary about it. Israel has systematically oppressed the Palestinians, institutionalized discrimination against the Palestinians, and intends to keep it that way. Those living in the West Bank are subject to military law while others fall under the Israeli legal system; Gaza has been under a blockade (sea, air and land) for almost 20 years, Palestinians who want to travel must get travel permits while other civilians do not; Palestinians cannot vote in Israeli elections; and Israel has stated it intends to permanently dominate and have a presence in the West Bank and Gaza. So are they living under a system of apartheid? Given Palestinians have restricted rights and are physically segregated the answer is yes – without any reservations.",
-      q3:"Yes. Per the 1948 Genocide Convention (please recall I attended the War College and have studied this material) the claim of genocide requires two conditions to be met: There must be specific acts of killing, causing serious harm, inflicting serious conditions, etc AND there must be intent to destroy a national, ethnic, racial or religious group. Some may argue that Israel’s intent is to destroy Hamas, not the Palestinians, but the scale – over 60,000 Palestinian deaths (some of whom may be Hamas, but no one can provide any accurate counts) plus the displacement of almost two million people, the domicide (destruction of housing), and the destruction of civilian infrastructure clearly infers the Israeli intention is to wipe out the Palestinians. While that is my opinion – here is a more official one: The International Court of Justice, in Jan 2024 ruled South Africa’s genocide case against Israel should proceed – a significant legal threshold. To date a legal ruling has not been issued.",
-      q4:"I’d vote to continue the provision of SOME financial aid with restrictions vote to continue SOME military support. Why? First, the US has a national debt problem that is getting worse each passing day, but Congress continues to pass deficit budgets adding to our national debt. In essence, we are borrowing money which adds to our national debt to pay for the financial and military support we provide to Israel and other countries. What is unique about Israel compared to other countries we provide aid is that it is: a high income country; a country which provides universal healthcare to its citizens (the US have over 25 million people without any health insurance) and better health outcomes than the US and has a strong domestic defense industry. Second, Israel is still an ally – which we need for strategic purposes in the Middle East – so we do not want to cut them off completely. Yet their destruction of Gaza, their joint attack with the US on Iran, and their continued advances into Lebanon requires a rethink of much military aid we want to provide such a “friend.” A “friend” that continues, with Trump’s blessing, to immerse us in Middle East quagmires against the wishes of the American people. A “friend” that is using American made weapon systems to destroy the Palestinians and made unwanted advances to adjacent countries. In conclusion: Financial aid should be extremely limited and made conditional on humanitarian measures that have to be met. Military aid should be scaled back dramatically and to the point where Israel has the necessary military equipment and weapons systems to defend itself against aggressors, but not provide it an overwhelming offensive capability which would encourage its leadership to invade other countries for “defensive purposes” as we are currently seeing in Lebanon.",
-      q5:"No.",
-      q6:"No. The embargo has been going on for decades and frankly it hasn’t worked. The Cuban government is still in power; it enables the Cuban government to blame the US for anything that goes wrong in the country, and it appears the only reasons we continue the embargo is to appease companies, their lobbyists and Cuban exiles who claim they still haven’t been reimbursed when the Cuban government nationalized assets.",
-      q7:"I do not support Trump’s proposed defense budget for Fiscal Year 2027 because such an increase is not needed or justified; it cuts funding to programs that matter to people; and does not mitigate our national debt problem. I support a strong, well-equipped military — but I do not support endless dollars (adding to the national debt) flowing into the military-industrial complex at a time when social safety nets are being cut (e.g., Medicaid, SNAP, ACA subsidies), when the Department of War has not been able to have a clean audit of its books in almost a decade, and when large military projects are always over cost and behind schedule. Many people in the District are hurting financially, living paycheck to paycheck. Why is it that Congress can always find funds (like an emergency appropriation to support military operations in Iran) to do things TO people, but never can find the funds FOR people?",
-      q8:"Yes, but we must not forget the military industrial complex associated with Wright Patterson provides a lot of “spill-over” or “ripple-through” funds for many people in the District. The diversification challenge is an economic development one that must be led by the Wright Patt Regional Council of Government and other economic development organizations within the 10th Congressional District – it cannot be forced upon a community, town, city, or county (-ies)."
-    }
-  },
-  { id:'mcmasters', name:'Tom McMasters', party:'L', status:'Challenger',
+  {
+    id:'mcmasters', name:'Tom McMasters', party:'L', status:'Libertarian Nominee', race:'OH-10',
     image:'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Thomas_McMasters_2026.jpg',
     website:'https://ballotpedia.org/Thomas_McMasters_(Ohio_U.S._House)',
     responses:{
@@ -1154,6 +1189,11 @@ const candidates = [
   }
 ];
 
+const senateCandidates = [
+  { id:'husted', name:'Jon Husted', party:'R', status:'Republican Nominee', race:'U.S. Senate' },
+  { id:'brown', name:'Sherrod Brown', party:'D', status:'Democratic Nominee', race:'U.S. Senate' },
+  { id:'levy', name:'Greg Levy', party:'I', status:'Independent Candidate', race:'U.S. Senate' }
+];
 
 function updateStats() {
   const contacted = candidates.length;
@@ -1184,6 +1224,7 @@ function getPartyShort(party) {
   if (party === 'D') return 'Dem';
   if (party === 'R') return 'Rep';
   if (party === 'L') return 'Lib';
+  if (party === 'I') return 'Ind';
   return party;
 }
 
@@ -1191,7 +1232,36 @@ function getPartyFull(party) {
   if (party === 'D') return 'Democrat';
   if (party === 'R') return 'Republican';
   if (party === 'L') return 'Libertarian';
+  if (party === 'I') return 'Independent';
   return party;
+}
+
+function getInitials(name) {
+  return name
+    .split(' ')
+    .filter(Boolean)
+    .map(part => part[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase();
+}
+
+function buildSenateSection() {
+  const senateGrid = document.getElementById('senateGrid');
+  if (!senateGrid) return;
+  senateGrid.innerHTML = senateCandidates.map(c => `
+    <article class="senate-card">
+      <div class="senate-card-top">
+        <div class="senate-initials" aria-hidden="true">${getInitials(c.name)}</div>
+        <div>
+          <div class="senate-name">${c.name}</div>
+          <div class="senate-race">${c.race}</div>
+        </div>
+      </div>
+      <span class="rc-party party-${c.party}">${getPartyFull(c.party)}</span>
+      <p style="margin-top:12px; font-size:0.92rem; font-weight:600; color:#444;">${c.status}</p>
+    </article>
+  `).join('');
 }
 
 function buildQuestions() {
@@ -1302,7 +1372,7 @@ function renderProfile(id) {
             <div class="cph-name">${c.name}</div>
             <div class="cph-meta">
               <span class="cph-badge">${getPartyFull(c.party)}</span>
-              <span class="mono" style="font-size:0.8rem; font-weight:700; color:rgba(255,255,255,0.9); text-transform:uppercase;">${c.status} / OH-10</span>
+              <span class="mono" style="font-size:0.8rem; font-weight:700; color:rgba(255,255,255,0.9); text-transform:uppercase;">${c.status} / ${c.race}</span>
             </div>
             ${c.website ? `
             <div class="cph-website">
@@ -1354,6 +1424,7 @@ function switchTab(tab) {
 }
 
 updateStats();
+buildSenateSection();
 buildQuestions();
 buildCandidates();
 toggleQ('q1');
