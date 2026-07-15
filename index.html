@@ -1003,7 +1003,7 @@
     <h1 class="splash-title">Candidate Questionnaire</h1>
     <div class="splash-text">
       <p>The Greater Dayton Peace Coalition is committed to maintaining a public presence in solidarity with the Palestinian people and advocating for peace for all. We sent a policy questionnaire to candidates in the 2026 general election for Ohio's 10th Congressional seat.</p>
-      <p style="margin-top: 16px;">Their unedited responses, and documented non-responses, are published below. We believe voters deserve to know exactly where their representatives stand.</p>
+      <p style="margin-top: 16px;">Kristina Knickerbocker's unedited responses are published below. We believe voters deserve to know exactly where candidates stand.</p>
     </div>
     <button class="splash-btn" onclick="enterSite()">View Candidate Responses &rarr;</button>
   </div>
@@ -1018,7 +1018,7 @@
     <div class="hero-text">
       <div class="hero-eyebrow">Ohio's 10th Congressional District / 2026 General Election</div>
       <h1 class="hero-title">CANDIDATE QUESTIONNAIRE</h1>
-      <p class="hero-sub">Where do the 2026 general election candidates stand on peace, military spending, and human rights? We asked. Here are the answers.</p>
+      <p class="hero-sub">Kristina Knickerbocker's responses to GDPC's questions on Palestine, campaign finance, military spending, and local jobs.</p>
     </div>
   </div>
 </header>
@@ -1045,66 +1045,17 @@
 <main class="main">
 
   <section class="card" style="margin-bottom: 22px;">
-    <h3 style="margin-bottom: 10px; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.05em;">Original Questionnaire Letter</h3>
-    <p style="margin-bottom: 14px;">The full letter sent to candidates is included below for transparency and public reference.</p>
-    <details>
-      <summary style="cursor:pointer; font-weight:700; color:var(--gold);">View full letter text</summary>
-      <div style="margin-top: 14px; line-height: 1.65;">
-        <p>The Greater Dayton Peace Coalition (GDPC) is a diverse, nonpartisan group of activists united by a commitment to peace and equity in the Greater Dayton area. You are a candidate running in the 2026 general election for Ohio’s 10th congressional district. We ask that you share your positions on foreign relations, military spending, and the promotion of our region as a hub for military-related technology and manufacturing.</p>
-        <p>Please answer the following questions honestly and in keeping with your own values. Some require only a yes or no; you are welcome to elaborate as needed.</p>
-        <ol style="padding-left: 18px; margin: 10px 0 14px;">
-          <li>Do you believe Israel should be held to the same standards as other countries regarding nuclear weapons?</li>
-          <li>Do you consider Palestinians to be living under a system of apartheid?</li>
-          <li>Do you consider the situation in Gaza to be a genocide?</li>
-          <li>Will you vote to provide continued financial and military support to Israel considering their actions over the last few years?</li>
-          <li>Will you accept campaign contributions from AIPAC or related entities?</li>
-          <li>Do you support the embargo on Cuba?</li>
-          <li>Do you believe money currently spent on the U.S. military and military aid abroad could be better spent improving the lives of citizens in the 10th congressional district?</li>
-          <li>Do you believe the 10th congressional district would benefit from diversifying employment opportunities to be less reliant on military-adjacent industries?</li>
-        </ol>
-        <p>Thank you for your time. We hope your responses give us a clearer picture of your candidacy and the values that will guide your representation of our district.</p>
-        <p style="margin-top: 12px;">Sincerely,<br/>
-        The Greater Dayton Peace Coalition Steering Committee<br/>
-        Samuel Caruso, Echoes of Gaza<br/>
-        Youssef Elzein<br/>
-        Suzanne Fogarty<br/>
-        Steve Fryburg, Veterans for Peace<br/>
-        Kevin Gwin<br/>
-        Judith Hempfling<br/>
-        Margaret Knapke<br/>
-        Logan Martinez, Ohio Green Party<br/>
-        Erica McCormick<br/>
-        Steve Snyder, Dayton Miami Valley Democratic Socialists of America<br/>
-        Sue Sutton<br/>
-        John Wagner, pastor, the United Methodist Church<br/>
-        Juanita Wehrle-Einhorn<br/>
-        Basel Yanes</p>
-      </div>
-    </details>
+    <h3 style="margin-bottom: 10px; font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.05em;">Questionnaire Responses</h3>
+    <p>Responses below were provided by Kristina Knickerbocker and are presented unedited.</p>
   </section>
 
-  <section class="race-toggle-section card" aria-labelledby="raceHeading">
-    <h2 class="section-heading" id="raceHeading">2026 Federal Candidates</h2>
-    <p class="section-copy">Toggle between Ohio's 10th Congressional District House race and the statewide U.S. Senate race. Both races use the same candidate and question comparison views below.</p>
-    <div class="race-toggle" role="tablist" aria-label="Select candidate race">
-      <button class="race-toggle-btn active" id="race-house" role="tab" aria-selected="true" onclick="switchRace('house')">
-        <span class="race-toggle-title">House of Representatives</span>
-        <span class="race-toggle-meta">Ohio's 10th Congressional District</span>
-      </button>
-      <button class="race-toggle-btn" id="race-senate" role="tab" aria-selected="false" onclick="switchRace('senate')">
-        <span class="race-toggle-title">U.S. Senate</span>
-        <span class="race-toggle-meta">Statewide Ohio race</span>
-      </button>
-    </div>
-  </section>
+
 
   <div class="legend">
     <span class="legend-label">Key:</span>
     <span class="legend-item"><span class="badge badge-yes">Y</span> Answered Yes</span>
     <span class="legend-item"><span class="badge badge-no">N</span> Answered No</span>
-    <span class="legend-item"><span class="badge badge-txt">"</span> Custom Answer</span>
-    <span class="legend-item"><span class="badge badge-nr">X</span> Did Not Respond</span>
-    <span class="legend-item"><span class="badge badge-aw">?</span> Awaiting Response</span>
+    <span class="legend-item"><span class="badge badge-txt">&quot;</span> Detailed Answer</span>
   </div>
 
   <div class="tabs" role="tablist">
@@ -1159,80 +1110,33 @@ function enterSite() {
 }
 
 const questions = [
-  { id:'q1', text:"Do you believe Israel should be held to the same standards as other countries regarding nuclear weapons?" },
-  { id:'q2', text:"Do you consider Palestinians to be living under a system of apartheid?" },
-  { id:'q3', text:"Do you consider the situation in Gaza to be a genocide?" },
-  { id:'q4', text:"Will you vote to provide continued financial and military support to Israel considering their actions over the last few years?" },
-  { id:'q5', text:"Will you accept campaign contributions from AIPAC or related entities?" },
-  { id:'q6', text:"Do you support the embargo on Cuba?" },
-  { id:'q7', text:"Do you believe money currently spent on the U.S. military and military aid abroad could be better spent improving the lives of citizens in the 10th congressional district?" },
-  { id:'q8', text:"Do you believe the 10th congressional district would benefit from diversifying employment opportunities to be less reliant on military-adjacent industries?" }
+  { id:'q1', text:"Do you consider Palestinians to be living under a system of apartheid; do you think that the situation in Gaza is a genocide?" },
+  { id:'q2', text:"Will you vote to provide continued financial and military support to Israel considering their actions over the last few years?" },
+  { id:'q3', text:"Do you think that the practice of large campaign donations from PACS (such as AIPAC), especially those representing foreign interests, have become antithetical to fair elections and lessened the representation of constituents?" },
+  { id:'q4', text:"Has District 10 become overly reliant on military adjacent industries, specifically weapons manufacturing for well paying jobs?" },
+  { id:'q5', text:"Do you have plans for diversifying job opportunities that are more aligned with Dayton’s claim to being the “City of Peace”?" }
 ];
 
 const houseCandidates = [
   {
-    id:'turner', name:'Mike Turner', party:'R', status:'Republican Nominee', race:'OH-10',
-    image:'https://upload.wikimedia.org/wikipedia/commons/3/3a/Mike_Turner%2C_official_photo%2C_116th_Congress.jpg',
-    website:'https://www.miketurner.com/',
-    responses:{
-      q1:"Did not respond to questionnaire.", q2:"Did not respond to questionnaire.",
-      q3:"Did not respond to questionnaire.", q4:"Did not respond to questionnaire.",
-      q5:"Did not respond to questionnaire.", q6:"Did not respond to questionnaire.",
-      q7:"Did not respond to questionnaire.", q8:"Did not respond to questionnaire."
-    }
-  },
-  {
-    id:'knickerbocker', name:'Kristina Knickerbocker', party:'D', status:'Democratic Nominee', race:'OH-10',
+    id:'knickerbocker', name:'Kristina Knickerbocker', party:'D', status:'Democratic Candidate', race:'OH-10',
     image:'https://electesrati.com/wp-content/uploads/2026/01/Kristina-Knickerbocker-smarll.jpg',
     website:'https://kristinaknickerbocker.com',
     responses:{
-      q1:"Awaiting response.", q2:"Awaiting response.", q3:"Awaiting response.", q4:"Awaiting response.",
-      q5:"Awaiting response.", q6:"Awaiting response.", q7:"Awaiting response.", q8:"Awaiting response."
+      q1:"Yes, the evidence from Gaza overwhelmingly supports that Palestinians are the victim of attempted genocide from the Israeli government, with significant American funding. The situation for both Palestinians in Gaza and the West Bank is unsustainable and, of course, at odds with our American values. No one in the region will be safe until Palestinians have a state to call their own, true self-determination, and security guarantees for all civilians.",
+      q2:"No. I support the bipartisan efforts to zero out financial support for Israel. Our taxpayer dollars are better spent improving lives for people at home.",
+      q3:"Yes absolutely. I have been endorsed by End Citizens United which backs getting big money out of politics. I have not taken any money from Corporate PACs or AIPAC and never will.",
+      q4:"Yes. A strong Miami Valley means a further diversified economy that everyone can participate in. Since Mike Turner has been in office over the last 30 years, we have seen major employers leave our region and not replaced.",
+      q5:"Yes, I meet almost weekly with new nonprofit or community leaders that are tackling problems in our community. I’m also interested in working with our institutions of higher education, trade schools, and leaders in the innovation space to help create the ‘jobs of tomorrow’ as our economy goes through a significant upheaval in the face of AI."
     }
-  },
-  {
-    id:'mcmasters', name:'Tom McMasters', party:'L', status:'Libertarian Nominee', race:'OH-10',
-    image:'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Thomas_McMasters_2026.jpg',
-    website:'https://ballotpedia.org/Thomas_McMasters_(Ohio_U.S._House)',
-    responses:{
-      q1:"Awaiting response.", q2:"Awaiting response.", q3:"Awaiting response.", q4:"Awaiting response.",
-      q5:"Awaiting response.", q6:"Awaiting response.", q7:"Awaiting response.", q8:"Awaiting response."
-    }
-  }
-];
-
-function awaitingResponses() {
-  return questions.reduce((acc, q) => {
-    acc[q.id] = 'Awaiting response.';
-    return acc;
-  }, {});
-}
-
-const senateCandidates = [
-  {
-    id:'husted', name:'Jon Husted', party:'R', status:'Republican Nominee', race:'U.S. Senate',
-    image:'https://ohiocapitaljournal.com/wp-content/uploads/2022/09/20220909__R517479-1536x1024.jpg', website:'https://www.jonhustedforsenate.com/', responses: awaitingResponses()
-  },
-  {
-    id:'brown', name:'Sherrod Brown', party:'D', status:'Democratic Nominee', race:'U.S. Senate',
-    image:'https://media-cldnry.s-nbcnews.com/image/upload/rockcms/2024-10/241027-sherrod-brown-vl-337p-18f184.jpg', website:'https://www.sherrodbrown.com/', responses: awaitingResponses()
-  },
-  {
-    id:'levy', name:'Greg Levy', party:'I', status:'Independent Candidate', race:'U.S. Senate',
-    image:'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Gregory_Levy_20251027_011312.jpg', website:'https://www.greg4senate.com/', responses: awaitingResponses()
   }
 ];
 
 const raceData = {
   house: {
-    label: 'House Candidates Contacted',
+    label: 'Candidate Responses',
     candidates: houseCandidates,
-    defaultCandidateId: 'turner'
-  },
-  senate: {
-    label: 'Senate Candidates Contacted',
-    candidates: senateCandidates,
-    defaultCandidateId: 'husted'
+    defaultCandidateId: 'knickerbocker'
   }
 };
 
@@ -1352,7 +1256,7 @@ function toggleQ(id) {
   }
 }
 
-let activeCandId = 'turner';
+let activeCandId = 'knickerbocker';
 
 function buildCandidates() {
   const activeCandidates = getActiveCandidates();
